@@ -13,36 +13,14 @@ Basic::getHeader();
     <p class="card-text">Nº de ediciones: <?php echo "$libro->ediciones" ?></p>
     <p class="card-text">Edad recomendada: <?php echo "$libro->edadrecomendada" ?></p>
   </div>
-  
-    <?php
-    if($ejemplares){
 
-        echo "<div class='accordion accordion-flush' id='accordionFlushExample'>";
-
-            foreach($ejemplares as $ejemplar){   
-                echo "<div class='accordion-item'>
-                <h2 class='accordion-header' id='flush-heading$ejemplar->id'>
-                    <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapse$ejemplar->id' aria-expanded='false' aria-controls='flush-collapse$ejemplar->id'>
-                    Ejemplar #id= $ejemplar->id
-                </button>
-                </h2>
-                <div id='flush-collapse$ejemplar->id' class='accordion-collapse collapse' aria-labelledby='flush-heading$ejemplar->id' data-bs-parent='#accordionFlushExample'>
-                    <div class='accordion-body'>Precio: <code>$ejemplar->precio €</code> Año: $ejemplar->anyo Edición: $ejemplar->edicion </div>
-                </div>
-            </div>";
-            }
-            echo "</div'>";
-        }else{
-            echo "No tenemos ejemplares de este Libro";
-        }
-    ?>
-
-<!--AÑADIR EJEMPALRES DEL LIBRO-->
+<!--AÑADIR EJEMPLARES DEL LIBRO-->
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary mx-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">
 AÑADIR EJEMPLAR
 </button>
-<!-- Modal -->
+
+<!-- Modal AÑADIR EJEMPLAR -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -75,7 +53,57 @@ AÑADIR EJEMPLAR
     </div>
   </div>
 </div>
-<a href="/ejemplar/create/<?= $libro->id?>"></a>
+
+
+
+  
+    <?php
+    if($ejemplares){
+        echo "<h2 class='card-subtitle h2'>EJEMPLARES DEL LIBRO</h2>";
+        echo "<div class='accordion accordion-flush' id='accordionFlushExample'>";
+            foreach($ejemplares as $ejemplar){   
+                echo "<div class='accordion-item'>
+                <h2 class='accordion-header' id='flush-heading$ejemplar->id'>
+                    <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapse$ejemplar->id' aria-expanded='false' aria-controls='flush-collapse$ejemplar->id'>
+                        Ejemplar #id= $ejemplar->id
+                    </button>          
+                    <!-- Modal borrar EJEMPLAR -->
+                    <div class='modal fade' id='destroyEjemplar$ejemplar->id' tabindex='-1' aria-labelledby='destroyEjemplarLabel' aria-hidden='true'>
+                        <div class='modal-dialog'>
+                        <div class='modal-content'>
+                            <div class='modal-header'>
+                            <h5 class='modal-title' id='destroyEjemplarLabel$ejemplar->id'>Vas a borrar el ejemplar # $ejemplar->id del libro $libro->titulo </h5>
+                            <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                            </div>
+                            <div class='modal-body'>
+                            <h5 class='modal-title' id='destroyEjemplarLabel$ejemplar->id'>Esta acción es irreversible, ¿estás seguro? </h5>
+                            <form action='/ejemplar/destroy/$ejemplar->id' method='post'>
+                                <input type='hidden' class='form-control' name='id' value='$ejemplar->id' >
+                            </div>
+                            <div class='modal-footer'>
+                                <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cerrar</button>
+                                <button type='submit' class='btn btn-danger mx-auto' data-bs-toggle='modal' data-bs-target='#destroyEjemplar$ejemplar->id'>BORRAR EJEMPLAR</button>
+                            </div>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+                </h2>
+                <div id='flush-collapse$ejemplar->id' class='accordion-collapse collapse' aria-labelledby='flush-heading$ejemplar->id' data-bs-parent='#accordionFlushExample'>
+                    <div class='accordion-body'>Precio: <code>$ejemplar->precio €</code> Año: $ejemplar->anyo Edición: $ejemplar->edicion </div>
+                    <button type='button' class='btn btn-danger mx-auto' data-bs-toggle='modal' data-bs-target='#destroyEjemplar$ejemplar->id'>
+                        BORRAR EJEMPLAR
+                    </button>
+                </div>
+            </div>";
+            }
+            echo "</div'>";
+        }else{
+            echo "<h3>No tenemos ejemplares de este Libro</h3>";
+        }
+    ?>
+
+
 
 <h2 class="h2">Temas del libro <?php echo "$libro->titulo" ?></h2>
 

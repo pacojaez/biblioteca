@@ -99,6 +99,9 @@ class Model{
         
         // pone comillas en el SQL solo para los string
         foreach($this as $propiedad=>$valor)
+            if($valor == self::getTable())
+            continue;
+            
             switch(gettype($valor)){
                 case "string" : $consulta .= "$propiedad='$valor', "; break;
                 case "NULL"   : $consulta .= "$propiedad=NULL, "; break;

@@ -32,7 +32,7 @@ public function prueba(){
 
 
 
-// muestra una libro
+// muestra un libro
 public function show(int $id = 0){
 
     // esta operación solamente la puede hacer el administrador
@@ -194,7 +194,6 @@ public function destroy(){
 
 
 // funcion de busqueda por parametros
-
     public function search(){
         
         if( empty($_POST['search'])){
@@ -210,6 +209,15 @@ public function destroy(){
         $libros = Libro::getFiltered( $campo, $valor, $orden, $sentido );
 
         require_once '../views/libro/listar.php';
+
+    }
+
+    // metodo para generar una vista con los libros de un tema
+
+    public function tema( int $id ){
+        $tema = Tema::getById($id);
+        $libros = $tema->manyToMany('libro');
+        include '../views/libro/listar.php';
 
     }
 }

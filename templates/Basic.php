@@ -20,31 +20,35 @@ class Basic {
 
     //poner el header
     public static function getHeader(){?>
-
         <nav class='navbar navbar-expand-lg navbar-light bg-light'>
                 <div class='container-fluid'>
-                      <a class='navbar-brand' href='#'>Navbar</a>
+                      <a class='navbar-brand' href='#'>LA BIBLIO</a>
                       <button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
                           <span class='navbar-toggler-icon'></span>
                       </button>
                       <div class='collapse navbar-collapse' id='navbarSupportedContent'>
                           <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
                           <li class='nav-item'>
-                              <a class='nav-link active' aria-current='page' href='/libro/list'>LIBROS</a>
+                              <a class='nav-link' aria-current='page' href='/libro/list'>LIBROS</a>
                           </li>
-                          <li class='nav-item'>
-                              <a class='nav-link' href='#'>Link</a>
-                          </li>
+                          
                           <li class='nav-item dropdown'>
                               <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
-                              Dropdown
+                              TEMAS
                               </a>
                               <ul class='dropdown-menu' aria-labelledby='navbarDropdown'>
-                              <li><a class='dropdown-item' href='#'>Action</a></li>
-                              <li><a class='dropdown-item' href='#'>Another action</a></li>
-                              <li><hr class='dropdown-divider'></li>
-                              <li><a class='dropdown-item' href='#'>Something else here</a></li>
+                              <?php
+                              $temas = Tema::get();
+                              foreach ($temas as $tema){
+                                 $count = count($tema->manyToMany('libro'));
+                                 echo "<li><a class='dropdown-item' href='/libro/tema/$tema->id'>$tema->tema ($count)</a></li>
+                                       <li><hr class='dropdown-divider'></li>";
+                              }
+                              ?>
                               </ul>
+                          </li>
+                          <li class='nav-item'>
+                              <a class='nav-link' href='/socio/list'>SOCIOS</a>
                           </li>
                           <li class='nav-item'>
                               <a class='nav-link disabled' href='#' tabindex='-1' aria-disabled='true'>Disabled</a>
@@ -52,7 +56,7 @@ class Basic {
                           </ul>
                           <form class='d-flex' method='post' action='/libro/search'>
                             <div class='mb-3'>
-                              <label for='exampleInputEmail1' class='form-label'>Campo</label>
+                              <label for='campo' class='form-label'>Campo</label>
                               <select class='form-select' aria-label='Default select example' name="campo">
                                   <option value='titulo' <?= !empty($campo) && $campo == 'titulo' ? 'selected' : '' ?>>Título</option>
                                   <option value='isbn' <?= !empty($campo) && $campo == 'isbn' ? 'selected' : '' ?>>ISBN</option>
@@ -66,7 +70,7 @@ class Basic {
                               <div id="valorHelp" class="form-text">Escribe tu búsqueda.</div>
                             </div>
                             <div class='mb-3'>
-                              <label for='exampleInputEmail1' class='form-label'>Orden</label>
+                              <label for='orden' class='form-label'>Orden</label>
                               <select class='form-select' aria-label='Default select example' name="orden">
                                   <option value='titulo' <?= !empty($orden) && $orden == 'titulo' ? 'selected' : '' ?>>Título</option>
                                   <option value='isbn' <?= !empty($orden) && $orden == 'isbn' ? 'selected' : '' ?>>ISBN</option>
@@ -75,14 +79,14 @@ class Basic {
                               </select>
                             </div>
                             <div class='mb-3'>
-                                <label class="form-check-label" for="flexRadioDefault1">
+                                <label class="form-check-label" for="sentido">
                                   ASC
                                 </label>
                                 <div class="form-check">
                                   <input class="form-check-input" type="radio" name="sentido" value="ASC" id="sentidoAsc" checked> 
                                 </div>
                                 <div class="form-check">
-                                  <label class="form-check-label" for="flexRadioDefault2">
+                                  <label class="form-check-label" for="sentido">
                                     DESC
                                   </label>
                                   <input class="form-check-input" type="radio" name="sentido" value="DESC" id="sentidoDesc">
@@ -92,7 +96,7 @@ class Basic {
                               <div class="form-check">
                                 <button class='btn btn-outline-success' type='submit' name='search' value="search">SEARCH</button>
                               </div>
-                            </div>      
+                            </div>
                           </form>
                           <div class='mb-3'>
                             <a href='/libro/list'><button class='btn btn-outline-success' type='button' >LIMPIAR</button></a>

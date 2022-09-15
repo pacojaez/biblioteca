@@ -162,7 +162,7 @@ public function destroy(){
     // si es el administrador el que da de baja un Ejemplar cualquiera, se muestra éxito
     }else{
         $mensaje = "El Ejemplar ha sido dado de baja correctamente.";
-        include 'views/exito.php'; //mostrar éxito
+        include '../views/exito.php'; //mostrar éxito
     }
 }
 }

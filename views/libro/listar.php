@@ -4,7 +4,9 @@ Basic::getHeader();
 ?>
 
 <!-- content -->
-<h2 class="ha">LISTADO DE LIBROS</h2>
+<div class="container">
+<h2 class="h2 mx-auto">LISTADO DE LIBROS</h2>
+</div>
 <div class="container">
 <table class="table table-striped">
 <thead>
