@@ -3,6 +3,7 @@ Basic::getHead('TODOS LOS LIBROS');
 Basic::getHeader();
 ?>
 
+
 <div class="container-fluid">
     <div class="card mx-auto" style="width: 36rem;">
         <div class="card-body">
@@ -13,14 +14,14 @@ Basic::getHeader();
         <div class="card-body">
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#añadirPrestamo">
-                Añadir Préstamo
+                AÑADIR PRÉSTAMO
             </button>
-            <!-- Modal -->
-            <div class="modal fade" id="añadirPrestamo" tabindex="-1">
+            <!-- Modal añadir prestamo-->
+            <div class="modal fade" id="añadirPrestamo" tabindex="-1" aria-labelledby="añadirPrestamoLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="añadirPrestamoLabel">Modal title</h5>
+                            <h5 class="modal-title" id="añadirPrestamoLabel">NUEVO PRÉSTAMO</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -33,44 +34,66 @@ Basic::getHeader();
                                 <button type="submit" class="btn btn-primary" name="guardar" value="guardar">Añadir Prestamo</button>
                             </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
-            <!-- Button actualizar socio -->
             <a href="/socio/edit/<?=$socio->id ?>">
                 <button type="button" class="btn btn-secondary">
                     ACTUALIZAR SOCIO
                 </button>
             </a>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrarSocio">
-                ELIMINAR SOCIO
-            </button>
-            <!-- Modal -->
-            <div class="modal fade" id="borrarSocio" tabindex="-1">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="borrarSocioLabel">BORRAR SOCIO</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                        <h4 class="modal-subtitle" id="borrarSocioLabel">Esta acción es irreversible. ¿Estás Seguro? </h4>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrarSocio">
+                    BORRAR SOCIO
+                </button>
+                <!-- Modal borrar socio -->
+                <div class="modal fade" id="borrarSocio" tabindex="-1" aria-labelledby="borrarSocioLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="borrarSocio">BORRAR SOCIO</h5>
+                                
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                            <h4 class="modal-subtitle" id="borrarSocioLabel">Esta acción es irreversible. ¿Estás Seguro? </h4>
                                 <form action='/socio/destroy/<?=$socio->id ?>' method='post'>
                                     <input type='hidden' class='form-control' name='idsocio' value="<?= $socio->id ?>">
                                     <button type="submit" class="btn btn-danger" name="eliminar" value="eliminar">BORRADO DEFINITIVO DEL SOCIO</button>
                                 </form>
+                            </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            
                         </div>
                     </div>
                 </div>
-            </div>
-            
+
+                <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#prestamoModal">
+                    AÑADIR PRESTAMO
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="prestamoModal" tabindex="-1" aria-labelledby="prestamoModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="prestamoModalLabel">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                        </div>
+                    </div>
         </div>
     </div>
-    <div class="card mx-auto" style="width: 36rem;">
     <?php
     if ($prestamos) {
         echo "<h2 class='card-subtitle h2'>PRESTAMOS SIN DEVOLVER ($totalSinDevolver)</h2>";
@@ -174,8 +197,8 @@ Basic::getHeader();
         echo "<h3>Este socio no tiene histórico de prestamos</h3>";
     }
     ?>
-    </div>
-    </div>
+</div>
+</div>
 </div>
 <?php
 Basic::getFooter();

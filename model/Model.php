@@ -68,7 +68,8 @@ class Model{
         
         // valores
         foreach($this as $valor){
-            if($valor == self::getTable())
+            
+            if($valor == self::getTable()  || $valor == '' )
             continue;
             // pone comillas en el SQL solo para los string
             // también controla los valores nulos
@@ -96,12 +97,13 @@ class Model{
         
         // prepara la consulta 
         $consulta="UPDATE $tabla SET ";
+
+        //quitamos del Objeto la propiedad Table
+        unset($this->table);
         
         // pone comillas en el SQL solo para los string
         foreach($this as $propiedad=>$valor)
-            if($valor == self::getTable())
-            continue;
-            
+           
             switch(gettype($valor)){
                 case "string" : $consulta .= "$propiedad='$valor', "; break;
                 case "NULL"   : $consulta .= "$propiedad=NULL, "; break;

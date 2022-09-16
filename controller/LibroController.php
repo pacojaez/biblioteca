@@ -58,7 +58,7 @@ public function show(int $id = 0){
 
 // muestra el formulario de nueva libro
 public function create(){
-    include 'views/libro/nuevo.php';
+    include '../views/libro/nuevo.php';
 }
 
 // guarda el nuevo libro
@@ -70,20 +70,19 @@ public function store(){
 
     $libro = new libro(); //crear el nuevo libro
 
-    $libro->libro = DB::escape($_POST['libro']);
-    $libro->clave = md5($_POST['clave']); // encriptar la clave
-    $libro->nombre = DB::escape($_POST['nombre']);
-    $libro->apellido1 = DB::escape($_POST['apellido1']);
-    $libro->apellido2 = DB::escape($_POST['apellido2']);
-    $libro->privilegio = empty($_POST['privilegio'])? 0 : intval($_POST['privilegio']);
-    $libro->administrador = empty($_POST['administrador'])? 0 : 1;
-    $libro->email = DB::escape($_POST['email']);
+    $libro->titulo = DB::escape($_POST['titulo']);
+    $libro->autor = DB::escape($_POST['autor']); // encriptar la clave
+    $libro->edadrecomendada = DB::escape($_POST['edadrecomendada']);
+    $libro->ediciones = DB::escape($_POST['ediciones']);
+    $libro->isbn = DB::escape($_POST['isbn']);
+    $libro->editorial = DB::escape($_POST['editorial']);
+    $libro->idioma = DB::escape($_POST['idioma']);
 
     if(!$libro->guardar())
-        throw new Exception("No se pudo guardar $libro->libro");
+        throw new Exception("No se pudo guardar $libro->titulo");
 
-    $mensaje="Guardado del libro $libro->libro correcto.";
-    include 'views/exito.php'; //mostrar éxito
+    $mensaje="Guardado del libro $libro->titulo correcto.";
+    include '../views/exito.php'; //mostrar éxito
 }
 
 
@@ -101,49 +100,64 @@ public function edit(int $id = 0){
     if(!$libro = Libro::getById($id))
         throw new Exception("No se indicó la libro.");
     // mostrar el formulario de edición
-    include "views/blog/actualizar.php";
+    include "../views/libro/actualizar.php";
 }
 
 
 // aplica los cambios de un libro
-public function update(){
+public function update( int $id ){
 
     // esta operación solamente la puede hacer el administrador
     // o bien el libro propietario de los datos que se muestran
     // if(! (Login::isAdmin() || Login::get()->id == $id))
     //     throw new Exception('No tienes los permisos necesarios');
 
-    // comprueba que llegue el formulario con los datos
-    if(empty($_POST['actualizar']))
-        throw new Exception('No se recibieron datos');
+    /**
+         * método para extraer los parámetros por GET con un prefijo
+         */
+    extract($_POST, EXTR_PREFIX_ALL, "p");
 
-    $id = intval($_POST['id']); // recuperar el id vía POST
+    
+    isset($p_funcion) ? $p_funcion : 'No existe parametro por POST';
 
+   if(empty($p_actualizar))
+            throw new Exception('No se recibieron datos');
+    
+    if(!$libro = Libro::getById($id))
+        throw new Exception("No existe el libro $id.");
+
+    unset($_POST['actualizar']);
+
+    $datosActualizar = array_filter($_POST);
+
+        foreach ( $datosActualizar as $key=>$valor){
+            $libro->$key = $valor;            
+        }
     // recuperar la libro
     // recuperar el libro
-    if(!$libro =Libro::getById($id))
-        throw new Exception("No existe la libro $id.");
+    // if(!$libro =Libro::getById($id))
+    //     throw new Exception("No existe la libro $id.");
 
-    $libro->libro = DB::escape($_POST['libro']);
-    $libro->title = DB::escape($_POST['title']);
-    $libro->subtitle = DB::escape($_POST['subtitle']);
-    $libro->meta_description = DB::escape($_POST['meta_description']);
-    $libro->tags = DB::escape($_POST['tags']);
-    $libro->imagen = DB::escape($_POST['imagen']);
-    $libro->is_draft = empty($_POST['is_draft'])? 0 : 1;
-    $libro->id_libro = intval($_POST['id_libro']);
-    $libro->updated_at = date('Y-m-d h:i:s');
+    // $libro->titulo = DB::escape($_POST['t']);
+    // $libro->title = DB::escape($_POST['title']);
+    // $libro->subtitle = DB::escape($_POST['subtitle']);
+    // $libro->meta_description = DB::escape($_POST['meta_description']);
+    // $libro->tags = DB::escape($_POST['tags']);
+    // $libro->imagen = DB::escape($_POST['imagen']);
+    // $libro->is_draft = empty($_POST['is_draft'])? 0 : 1;
+    // $libro->id_libro = intval($_POST['id_libro']);
+    // $libro->updated_at = date('Y-m-d h:i:s');
 
     // intenta realizar la actualización de datos
     if($libro->actualizar()===false)
-        throw new Exception("No se pudo actualizar la libro: $libro->title");
+        throw new Exception("No se pudo actualizar la libro: $libro->titulo");
 
     // prepara un mensaje
-    $GLOBALS['mensaje'] = "Actualización de la libro: $libro->title correcta.";
+    $GLOBALS['mensaje'] = "Actualización de la libro: $libro->titulo correcta.";
     $mensaje = 'Actualización correcta';
     // repite la operación edit, así mantiene la vista de edición.
     //$this->edit($libro->id);
-    include 'views/exito.php'; //mostrar éxito
+    include '../views/exito.php'; //mostrar éxito
 }
 
 
@@ -169,7 +183,7 @@ public function delete(int $id = 0){
 public function destroy(){
 
     //recuperar el identificador vía POST
-    $id = empty($_POST['id'])? 0 : intval($_POST['id']);
+    $id = empty($_POST['idlibro'])? 0 : intval($_POST['idlibro']);
 
     // esta operación solamente la puede hacer el administrador
     // o bien el libro propietario de los datos que se muestran
@@ -177,7 +191,7 @@ public function destroy(){
     //     throw new Exception('No tienes los permisos necesarios');
 
     // borra el libro de la BDD
-    if(!libro::borrar($id)){
+    if(!Libro::borrar($id)){
         throw new Exception("No se pudo dar de baja el libro $id");
 
     // hace logout (solamente si es el mismo libro el que se está dando de baja)
@@ -188,7 +202,7 @@ public function destroy(){
     // si es el administrador el que da de baja un libro cualquiera, se muestra éxito
     }else{
         $mensaje = "El libro ha sido dado de baja correctamente.";
-        include 'views/exito.php'; //mostrar éxito
+        include '../views/exito.php'; //mostrar éxito
     }
 }
 

@@ -2,9 +2,60 @@
 Basic::getHead('TODOS LOS LIBROS');
 Basic::getHeader();
 ?>
-<h2>Nuevo usuario</h2>
+<h2 class="mx-auto">Nuevo usuario</h2>
+<div class="container m-5">
+<form class="row g-3" method="post" action="/socio/store">
+  <div class="col-md-6">
+    <label for="dni" class="form-label">DNI</label>
+    <input type="text" class="form-control" id="dni" name="dni">
+  </div>
+  <div class="col-md-6">
+    <label for="nombre" class="form-label">Nombre</label>
+    <input type="text" class="form-control" id="nombre" name="nombre">
+  </div>
+  <div class="col-12">
+    <label for="apellidos" class="form-label">Apellidos</label>
+    <input type="text" class="form-control" id="apellidos" name="apellidos">
+  </div>
+  <div class="col-md-4">
+    <label for="nacimiento" class="form-label">Fecha Nacimiento</label>
+	<input type="date" class="form-control" id="nacimiento" name="nacimiento">
+  </div>
+  <div class="col-12">
+    <label for="inputAddress2" class="form-label">EMail</label>
+    <input type="email" class="form-control" id="email" name="email">
+  </div>
+  <div class="col-md-6">
+    <label for="direccion" class="form-label">Dirección</label>
+    <input type="text" class="form-control" id="direccion" name="direccion">
+  </div>
+  <div class="col-md-4">
+    <label for="poblacion" class="form-label">Población</label>
+	<input type="text" class="form-control" id="poblacion" name="poblacion">
+  </div>
+  <div class="col-md-2">
+    <label for="provincia" class="form-label">Provincia</label>
+    <input type="text" class="form-control" id="provincia" name="provincia">
+  </div>
+  <div class="col-md-2">
+    <label for="cp" class="form-label">Código Postal</label>
+    <input type="text" class="form-control" id="cp" name="cp">
+  </div>
+  <div class="col-md-2">
+    <label for="telefono" class="form-label">Telefóno</label>
+    <input type="text" class="form-control" id="telefono" name="telefono">
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary" name="guardar" value="guardar">CREAR</button>
+	<button type="reset" class="btn btn-secondary">BORRAR</button>
+
+  </div>
+</form>
+
+</div>
+
 		
-		<form class="datos" method="post" action="/socio/store">
+		<!-- <form class="datos" method="post" action="/socio/store">
 			<label>SOCIO</label>
 			<input type="text" name="socio">
 			<br>
@@ -38,7 +89,7 @@ Basic::getHeader();
 			<br>
 			
 			<input type="submit" name="guardar" value="Guardar">
-		</form>
+		</form> -->
 		<br>
 		
 		<div class="centrado">
