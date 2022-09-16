@@ -15,11 +15,16 @@ Basic::getHeader();
     if($prestamos){
         echo "<h2 class='card-subtitle h2'>PRESTAMOS SIN DEVOLVER ($totalSinDevolver)</h2>";
         echo "<div class='accordion accordion-flush' id='accordionFlushExample'>";
-        foreach($prestamos as $prestamo){   
+        foreach($prestamos as $prestamo){
+              
             echo "<div class='accordion-item'>
                 <h2 class='accordion-header' id='flush-heading$prestamo->id'>
                     <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapse$prestamo->id' aria-expanded='false' aria-controls='flush-collapse$prestamo->id'>
-                        Prestamo #id= $prestamo->id 
+                        Prestamo #id: $prestamo->id
+                        <br>
+                        Libro: $prestamo->titulo
+                        <br>
+                        Vencimiento: $prestamo->limite 
                     </button>
 
                     <!-- Modal devolver PRESTAMO -->
@@ -43,9 +48,9 @@ Basic::getHeader();
                         </div>
                     </div>
                     </h2>
-                <div id='flush-collapse$prestamo->id' class='accordion-collapse collapse' aria-labelledby='flush-heading$prestamo->id' data-bs-parent='#accordionFlushExample'>
-                    <div class='accordion-body'>Fecha Prestamo: <code>$prestamo->prestamo €</code> Límite: $prestamo->limite Devolución: $prestamo->devolucion </div>
-                    <button type='button' class='btn btn-primary mx-auto' data-bs-toggle='modal' data-bs-target='#actualizarPrestamo$prestamo->id'>
+                <div id='flush-collapse$prestamo->id' class='accordion-collapse collapse bg-secondary bg-gradient' aria-labelledby='flush-heading$prestamo->id' data-bs-parent='#accordionFlushExample'>
+                    <div class='accordion-body text-light'>Fecha Prestamo: $prestamo->prestamo Límite: $prestamo->limite  </div>
+                    <button type='button' class='btn btn-primary m-auto' data-bs-toggle='modal' data-bs-target='#actualizarPrestamo$prestamo->id'>
                         DEVOLVER PRESTAMO
                     </button>
                 </div>
@@ -65,7 +70,11 @@ Basic::getHeader();
             echo "<div class='accordion-item'>
                 <h2 class='accordion-header' id='flush-heading$prestamo->id'>
                     <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapse$prestamo->id' aria-expanded='false' aria-controls='flush-collapse$prestamo->id'>
-                        Prestamo #id= $prestamo->id 
+                        Prestamo #id= $prestamo->id
+                        <br>
+                        Libro: $prestamo->titulo
+                        <br>
+                        Vencimiento: $prestamo->limite 
                     </button>
 
                     <!-- Modal borrar PRESTAMO -->
@@ -90,9 +99,10 @@ Basic::getHeader();
                         </div>
                     </div>
                     </h2>
-                <div id='flush-collapse$prestamo->id' class='accordion-collapse collapse' aria-labelledby='flush-heading$prestamo->id' data-bs-parent='#accordionFlushExample'>
-                    <div class='accordion-body'>Fecha Prestamo: <code>$prestamo->prestamo €</code> Límite: $prestamo->limite Devolución: $prestamo->devolucion </div>
-                    <button type='button' class='btn btn-secondary mx-auto' data-bs-toggle='modal' data-bs-target='#destroyEjemplar$prestamo->id'>
+                <div id='flush-collapse$prestamo->id' class='accordion-collapse collapse bg-secondary bg-gradient' aria-labelledby='flush-heading$prestamo->id' data-bs-parent='#accordionFlushExample'>
+                    <div class='accordion-body text-light'>Fecha Prestamo: $prestamo->prestamo Límite: $prestamo->limite </div>
+                    <div class='accordion-body text-light'>Devolución: $prestamo->devolucion </div>
+                    <button type='button' class='btn btn-danger mx-auto' data-bs-toggle='modal' data-bs-target='#destroyEjemplar$prestamo->id'>
                         ELIMINAR PRESTAMO
                     </button>
                 </div>

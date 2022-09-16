@@ -14,7 +14,7 @@
     // PARÁMETROS DE CONFIGURACION DE LA BDD   
     define('DB_HOST','localhost');  // host
     define('DB_USER','root');       // usuario
-    define('DB_PASS','root');           // password
+    define('DB_PASS','');           // password
     define('DB_NAME','biblioteca'); // base de datos
     define('DB_CHARSET','utf8');    // codificación
 

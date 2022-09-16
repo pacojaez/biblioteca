@@ -8,7 +8,7 @@ Basic::getHeader();
 <h2 class="h2 mx-auto">LISTADO DE LIBROS</h2>
 </div>
 <div class="container">
-<table class="table table-striped">
+<table class="table table-striped" id="librosTable">
 <thead>
     <tr>
       <th scope="col">ID</th>
@@ -43,6 +43,11 @@ Basic::getHeader();
   </tbody>
 </table>
 </div>
+<script>
+  $(document).ready(function () {
+    $('#librosTable').DataTable();
+});
+</script>
 
 
 <?php

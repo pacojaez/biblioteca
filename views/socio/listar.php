@@ -7,10 +7,10 @@ Basic::getHeader();
 <h2 class="h2 mx-auto">LISTADO DE SOCIOS</h2>
 </div>
 <div class="container">
-  <a href="/socio/create"><button class="btn btn-primary">AÑADIR SOCIO</button></a>
+  <a href="/socio/create"><button class="btn btn-primary mb-3">AÑADIR SOCIO</button></a>
 </div>
 <div class="container">
-<table class="table table-striped">
+<table class="table table-striped" id="sociosTable">
 <thead>
     <tr>
       <th scope="col">ID</th>
@@ -48,6 +48,11 @@ Basic::getHeader();
   </tbody>
 </table>
 </div>
+<script>
+  $(document).ready(function () {
+    $('#sociosTable').DataTable();
+});
+</script>
 <?php
 Basic::getFooter();
 ?>

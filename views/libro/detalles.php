@@ -61,7 +61,10 @@ AÑADIR EJEMPLAR
     if($ejemplares){
         echo "<h2 class='card-subtitle h2'>EJEMPLARES DEL LIBRO</h2>";
         echo "<div class='accordion accordion-flush' id='accordionFlushExample'>";
-            foreach($ejemplares as $ejemplar){   
+            foreach($ejemplares as $ejemplar){
+
+                $ejemplar->getEstadoEjemplar($ejemplar->id);
+
                 echo "<div class='accordion-item'>
                 <h2 class='accordion-header' id='flush-heading$ejemplar->id'>
                     <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapse$ejemplar->id' aria-expanded='false' aria-controls='flush-collapse$ejemplar->id'>
