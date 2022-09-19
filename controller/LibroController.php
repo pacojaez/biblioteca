@@ -51,7 +51,7 @@ public function show(int $id = 0){
     $ejemplares = $libro->hasMany('Ejemplar');
 
     // $temas = $libro->getTemas();
-    $temas = $libro->manyToMany('tema');
+    $temasLibro = $libro->manyToMany('tema');
 
     include '../views/libro/detalles.php';
 }
@@ -59,7 +59,7 @@ public function show(int $id = 0){
 // muestra el formulario de nueva libro
 public function create(){
 
-    if(!Login::isAdmin() || Login::hasPrivilege(300))
+    if(! (Login::isAdmin() || Login::hasPrivilege(300)))
        throw new Exception('No tienes permiso para hacer esto');
 
     include '../views/libro/nuevo.php';
@@ -68,7 +68,7 @@ public function create(){
 // guarda el nuevo libro
 public function store(){
 
-    if(!Login::isAdmin() || Login::hasPrivilege(300))
+    if(! (Login::isAdmin() || Login::hasPrivilege(300)))
        throw new Exception('No tienes permiso para hacer esto');
 
     // comprueba que llegue el formulario con los datos
@@ -100,7 +100,7 @@ public function edit(int $id = 0){
 
     // esta operación solamente la puede hacer el administrador
     // o bien el libro propietario de los datos que se muestran
-    if(!Login::isAdmin() || Login::hasPrivilege(300))
+    if(! (Login::isAdmin() || Login::hasPrivilege(300)))
         throw new Exception('No tienes permiso para hacer esto');
 
     // recuperar el libro
@@ -116,7 +116,7 @@ public function update( int $id ){
 
     // esta operación solamente la puede hacer el administrador
     // o bien el libro propietario de los datos que se muestran
-    if(!Login::isAdmin() || Login::hasPrivilege(300))
+    if(! (Login::isAdmin() || Login::hasPrivilege(300)))
        throw new Exception('No tienes permiso para hacer esto');
 
     /**
@@ -167,7 +167,39 @@ public function update( int $id ){
     include '../views/exito.php'; //mostrar éxito
 }
 
+public function addTema( int $idlibro  ){
+   
+    if(! (Login::isAdmin() || Login::hasPrivilege(300)))
+    throw new Exception('No tienes permiso para hacer esto');
 
+    if(!$libro = Libro::getById($idlibro))
+        throw new Exception("No existe el libro $idlibro.");
+    
+    /**
+    * método para extraer los parámetros por GET con un prefijo
+    */
+    extract($_POST, EXTR_PREFIX_ALL, "p");
+
+    isset($p_idtema) ? $p_idtema : 'No existe el tema con ese id';
+
+    $tema= Tema::getById($p_idtema);
+    // var_dump($libro->addTema( $idlibro, $p_idtema )); die();
+    
+    try{
+        $libro->addTema( $idlibro, $p_idtema);
+            // prepara un mensaje
+        $GLOBALS['mensaje'] = "Añadido correctamente el Tema $tema->tema al libro: $libro->titulo.";
+        
+    }catch(Throwable $e){
+        $GLOBALS['mensaje'] = "No se pudo actualizar el libro: $libro->titulo";  
+        
+    }finally{
+        $this->show($idlibro);
+    }
+
+    
+
+}
 
 
 // muestra el formulario de confirmación de eliminación
@@ -175,7 +207,7 @@ public function delete(int $id = 0){
 
      // esta operación solamente la puede hacer el administrador
     // o bien el libro propietario de los datos que se muestran
-    if(!Login::isAdmin() || Login::hasPrivilege(300))
+    if(! (Login::isAdmin() || Login::hasPrivilege(300)))
        throw new Exception('No tienes permiso para hacer esto');
 
     // recupera el libro para mostrar sus datos en la vista
@@ -189,7 +221,7 @@ public function delete(int $id = 0){
 //elimina el libro
 public function destroy(){
 
-    if(!Login::isAdmin() || Login::hasPrivilege(300))
+    if(! (Login::isAdmin() || Login::hasPrivilege(300)))
        throw new Exception('No tienes permiso para hacer esto');
 
     //recuperar el identificador vía POST

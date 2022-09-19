@@ -7,31 +7,31 @@ Basic::getHeader();
 <form class="row g-3" method="post" action="/libro/store">
   <div class="col-md-6">
     <label for="titulo" class="form-label">TÍTULO</label>
-    <input type="text" class="form-control" id="titulo" name="titulo">
+    <input type="text" class="form-control" id="titulo" name="titulo" required>
   </div>
   <div class="col-12">
     <label for="autor" class="form-label">AUTOR</label>
-    <input type="text" class="form-control" id="autor" name="autor">
+    <input type="text" class="form-control" id="autor" name="autor" required>
   </div>
   <div class="col-md-4">
     <label for="editorial" class="form-label">EDITORIAL</label>
-	<input type="text" class="form-control" id="editorial" name="editorial">
+	<input type="text" class="form-control" id="editorial" name="editorial" required>
   </div>
   <div class="col-12">
     <label for="edadrecomendada" class="form-label">Edad Recomendada</label>
-    <input type="text" class="form-control" id="edadrecomendada" name="edadrecomendada">
+    <input type="text" class="form-control" id="edadrecomendada" name="edadrecomendada" required>
   </div>
   <div class="col-md-6">
     <label for="ediciones" class="form-label">EDICIONES</label>
-    <input type="text" class="form-control" id="ediciones" name="ediciones">
+    <input type="text" class="form-control" id="ediciones" name="ediciones" required>
   </div>
   <div class="col-md-6">
     <label for="isbn" class="form-label">ISBN</label>
-    <input type="text" class="form-control" id="isbn" name="isbn">
+    <input type="text" class="form-control" id="isbn" name="isbn" required>
   </div>
   <div class="col-md-6">
     <label for="idioma" class="form-label">IDIOMA</label>
-    <input type="text" class="form-control" id="idioma" name="idioma">
+    <input type="text" class="form-control" id="idioma" name="idioma" required>
   </div>
   <div class="col-12">
     <button type="submit" class="btn btn-primary" name="guardar" value="guardar">CREAR</button>

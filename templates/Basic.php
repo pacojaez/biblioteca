@@ -15,6 +15,7 @@ class Basic {
                         <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js' integrity='sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM' crossorigin='anonymous'></script>
                         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
                         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
                         <!-- <link rel='stylesheet' type='text/css' href='css/estilo.css'> -->
                     </head>
                     <body>
@@ -136,7 +137,7 @@ class Basic {
           <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
             <!-- Left -->
             <div class="me-5 d-none d-lg-block">
-              <span>Get connected with us on social networks:</span>
+              <span>AQUÍ IRÍAN ENLACES A REDES SOCIALES:</span>
             </div>
             <!-- Left -->
         
@@ -174,11 +175,10 @@ class Basic {
                 <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                   <!-- Content -->
                   <h6 class="text-uppercase fw-bold mb-4">
-                    <i class="fas fa-gem me-3"></i>Company name
+                    <i class="fas fa-gem me-3"></i>LA BIBLIO
                   </h6>
                   <p>
-                    Here you can use rows and columns to organize your footer content. Lorem ipsum
-                    dolor sit amet, consectetur adipisicing elit.
+                   ESPACIO PARA ORGANIZAR EL FOOTER
                   </p>
                 </div>
                 <!-- Grid column -->
@@ -187,20 +187,18 @@ class Basic {
                 <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
                   <!-- Links -->
                   <h6 class="text-uppercase fw-bold mb-4">
-                    Products
-                  </h6>
-                  <p>
-                    <a href="#!" class="text-reset">Angular</a>
-                  </p>
-                  <p>
-                    <a href="#!" class="text-reset">React</a>
-                  </p>
-                  <p>
-                    <a href="#!" class="text-reset">Vue</a>
-                  </p>
-                  <p>
-                    <a href="#!" class="text-reset">Laravel</a>
-                  </p>
+                    ÚLTIMO TEMAS AÑADIDOS
+                  </h6>';
+
+                  $temas = Tema::getFourLastAdded();
+                  foreach ($temas as $tema){
+                    echo "<p>
+                            <a href='/libro/tema/$tema->id' class='text-reset'>$tema->tema</a>
+                          </p>";
+                  }
+
+
+                  echo '
                 </div>
                 <!-- Grid column -->
         
@@ -208,34 +206,35 @@ class Basic {
                 <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                   <!-- Links -->
                   <h6 class="text-uppercase fw-bold mb-4">
-                    Useful links
-                  </h6>
-                  <p>
-                    <a href="#!" class="text-reset">Pricing</a>
-                  </p>
-                  <p>
-                    <a href="#!" class="text-reset">Settings</a>
-                  </p>
-                  <p>
-                    <a href="#!" class="text-reset">Orders</a>
-                  </p>
-                  <p>
-                    <a href="#!" class="text-reset">Help</a>
-                  </p>
+                    ÚLTIMOS LIBROS AÑADIDOS
+                  </h6>'
+                  ;
+
+                  $libros = Libro::getFourLastAdded();
+                  foreach ($libros as $libro){
+                    echo "<p>
+                            <a href='/libro/show/$libro->id' class='text-reset'>$libro->titulo</a>
+                          </p>";
+                  }
+
+
+                  echo '
+
+
                 </div>
                 <!-- Grid column -->
         
                 <!-- Grid column -->
                 <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                   <!-- Links -->
-                  <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-                  <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
+                  <h6 class="text-uppercase fw-bold mb-4">Contacto</h6>
+                  <p><i class="fas fa-home me-3"></i> CIFO Sabadell</p>
                   <p>
                     <i class="fas fa-envelope me-3"></i>
-                    info@example.com
+                    info@cifo.com
                   </p>
-                  <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
-                  <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+                  <p><i class="fas fa-phone me-3"></i> + 34 606 566 566</p>
+                  <p><i class="fas fa-print me-3"></i> + 34 606 234 567</p>
                 </div>
                 <!-- Grid column -->
               </div>
@@ -246,8 +245,8 @@ class Basic {
         
           <!-- Copyright -->
           <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-            © 2021 Copyright:
-            <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+            © 2022 Copyright:
+            <a class="text-reset fw-bold" href="https://packagist.org/packages/robertsallent/fastlight">Realizado sobre el framework FastLight desarrollado por Robert Sallent</a>
           </div>
           <!-- Copyright -->
         </footer>
@@ -268,7 +267,7 @@ class Basic {
 
                 echo $identificado ? 
                   "Hola <a href='/usuario/show/$identificado->id'> $identificado->usuario</a>, <a href='/login/logout'> SALIR </a>" :
-                  "<a href='/login'> Identificate </a>";
+                  "<a href='/login'><button class='btn btn-secondary'> Identificate </button></a>";
                 
                 echo "</li>
               </ul>

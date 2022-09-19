@@ -90,8 +90,18 @@
         // Método para realizar consultas INSERT
         // retorna el valor del ID autonumérico asignado en la BDD
         public static function insert(string $consulta):int{
-            self::query($consulta);         // ejecuta la consulta
+            
+            self::query($consulta);  
+          // ejecuta la consulta
             return self::get()->insert_id;  // retorna el insert_id
+        }
+
+        // Método para realizar consultas INSERT en tablas compuestas por dos ids, sin id
+        // retorna el valor del ID autonumérico asignado en la BDD
+        public static function insertPivot(string $consulta):int{  
+            self::query($consulta);  
+          // ejecuta la consulta
+            return self::get()->affected_rows;  // retorna el insert_id
         }
         
         // Método para realizar consultas UPDATE

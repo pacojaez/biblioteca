@@ -5,6 +5,7 @@ Basic::getHeader();
 <h2 class="mx-auto">Actualizar el usuario <?= $usuario->id ?></h2>
 <div class="container m-5">
 <form class="row g-3" method="post" action="/usuario/update/<?= $usuario->id ?>" >
+<input type="hidden" name="id" value="<?= $usuario->id ?>" />
 <div class="col-md-6">
     <label for="usuario" class="form-label">NickName</label>
     <input type="text" class="form-control" id="usuario" name="usuario" placeholder="<?= $usuario->usuario ?>" >
@@ -30,7 +31,8 @@ Basic::getHeader();
 	<input type="text" class="form-control" id="privilegio" name="privilegio" placeholder="<?= $usuario->privilegio ?>" >
   </div>
   <div class="form-check">
-    <input class="form-check-input" type="checkbox" name="administrador" value="" id="administrador">
+    <input class="form-check-input" type="checkbox" name="administrador" value="1" id="administrador"
+    <?= $usuario->administrador? 'checked' : '' ?> >
     <label class="form-check-label" for="administrador">
       ADMINISTRADOR
     </label>

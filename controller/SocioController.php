@@ -18,8 +18,9 @@ class SocioController {
 
     // esta operación solamente la puede hacer el administrador
     // o bien el libro propietario de los datos que se muestran
-    //if(! (Login::isAdmin() || Login::get()->id == $id))
-    //    throw new Exception('No tienes los permisos necesarios.');
+    if(! (Login::isAdmin() || Login::hasPrivilege(300)))       
+    throw new Exception('No tienes los permisos necesarios.');
+
     if(!$id)
     throw new Exception("No se pudo indicó el id.");
     // recuperar el libro
@@ -82,8 +83,8 @@ class SocioController {
 
         // esta operación solamente la puede hacer el administrador
         // o bien el socio propietario de los datos que se muestran
-        // if(! (Login::isAdmin() || Login::get()->id == $id))
-        //     throw new Exception('No tienes los permisos necesarios');
+        if(! (Login::isAdmin() || Login::hasPrivilege(300)))
+            throw new Exception('No tienes los permisos necesarios');
 
         // recuperar el socio
         if(!$socio = Socio::getById($id))
@@ -154,8 +155,8 @@ class SocioController {
 
     // esta operación solamente la puede hacer el administrador
     // o bien el Ejemplar propietario de los datos que se muestran
-    // if(! (Login::isAdmin() || Login::get()->id == $id))
-    //     throw new Exception('No tienes los permisos necesarios');
+    if(! (Login::isAdmin() || Login::hasPrivilege(300)))
+        throw new Exception('No tienes los permisos necesarios');
 
     // borra el socio de la BDD
     if(!Socio::borrar($id)){

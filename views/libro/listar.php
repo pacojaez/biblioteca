@@ -11,6 +11,10 @@ Basic::getHeader();
 <a href="/libro/create"><button class="btn btn-primary">CREAR NUEVO LIBRO</button></a>
 <?php }?>
 
+<?php if(Login::isAdmin() || Login::hasPrivilege(300)){?>
+<a href="/tema/create"><button class="btn btn-secondary">CREAR NUEVO TEMA</button></a>
+<?php }?>
+
 </div>
 <div class="container">
 <table class="table table-striped" id="librosTable">

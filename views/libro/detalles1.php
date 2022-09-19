@@ -3,12 +3,7 @@ Basic::getHead('TODOS LOS LIBROS');
 Basic::getHeader();
 ?>
 
-<?php if( isset($GLOBALS['mensaje']) ){ 
-        echo "<div class='card mx-auto bg-success text-white' style='width: 36rem;'>";
-            echo $GLOBALS['mensaje'];
-        echo "</div>"; }?>
-
-<div class="container-fluid m-5"> 
+<div class="container-fluid m-5">
     <div class="card mx-auto" style="width: 36rem;">
         <div class="card-body">
             <h2 class="card-title h2"><?php echo "$libro->titulo"; ?></h2>
@@ -153,26 +148,27 @@ Basic::getHeader();
 
         <h2 class="h2">Temas del libro <?php echo "$libro->titulo" ?></h2>
         <?php if(Login::isAdmin() || Login::hasPrivilege(300)){
-            $allTemas = Tema::get(); ?>
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#añadirTemaLibro">
-            AÑADIR TEMA
-        </button>
-        <?php } ?>
-            <!-- Modal AÑADIR TEMA LIBRO -->
-        <div class="modal fade" id="añadirTemaLibro" tabindex="-1">
+            
+            $temas= Tema::get();?>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#añadirTema">
+                AÑADIR TEMA
+            </button>
+        <!-- Modal AÑADIR TEMA AL LIBRO -->
+        <div class="modal fade" id="añadirTema" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="añadirTemaLibroLabel">AÑADIR TEMA AL LIBRO</h5>
+                        <h5 class="modal-title" id="añadirTemaLabel">AÑADIR TEMA AL LIBRO</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <h4 class="modal-subtitle" id="borrarLibroLabel">Aquí puedes añadir un Tema al libro </h4>
+                        <h4 class="modal-subtitle" id="añadirTemaLabel">Puedes añadir un TEMA a este libro </h4>
                                 <form action='/libro/addTema/<?=$libro->id ?>' method='post'>
                                     <input type='hidden' class='form-control' name='idlibro' value="<?= $libro->id ?>">
                                     <select class="form-select" aria-label="Default select example" name="idtema">
-                                        <?php foreach($allTemas as $temaSelect){
-                                            echo "<option value='$temaSelect->id'>$temaSelect->tema</option>";
+                                        <?php foreach($temas as $tema){
+                                            echo "<option value='$tema->id'>$tema->tema</option>";
                                         }
                                         ?>                                    
                                     </select>
@@ -182,27 +178,26 @@ Basic::getHeader();
                 </div>
             </div>
         </div>
+        <?php }?>
 
         <?php
         if ($temasLibro) {
-
             echo "<div class='accordion accordion-flush' id='accordionFlushExample'>";
-
-            foreach ($temasLibro as $temaLibro) {
+            foreach ($temasLibro as $temalibro) {
                 echo "<div class='accordion-item'>
-                <h2 class='accordion-header' id='flush-heading$temaLibro->id'>
-                    <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapse$temaLibro->id' aria-expanded='false' aria-controls='flush-collapse$temaLibro->id'>
-                    $temaLibro->tema
+                <h2 class='accordion-header' id='flush-heading$temalibro->id'>
+                    <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapse$tema->id' aria-expanded='false' aria-controls='flush-collapse$tema->id'>
+                    $temalibro->tema
                 </button>
                 </h2>
-                <div id='flush-collapse$temaLibro->id' class='accordion-collapse collapse' aria-labelledby='flush-heading$temaLibro->id' data-bs-parent='#accordionFlushExample'>
-                    <div class='accordion-body'>Descripción: $temaLibro->descripcion </div>
+                <div id='flush-collapse$temalibro->id' class='accordion-collapse collapse' aria-labelledby='flush-heading$tema->id' data-bs-parent='#accordionFlushExample'>
+                    <div class='accordion-body'>Descripción: $temalibro->descripcion </div>
                 </div>
             </div>";
             }
             echo "</div'>";
         } else {
-            echo "No tenemos Temas de este Libro";
+            echo "Este libro no tiene TEMAS";
         }
         ?>
     </div>

@@ -1,176 +1,327 @@
-<!DOCTYPE html>
-<html lang='es'>
+<div class="container-fluid m-5">
+    <div class="card mx-auto" style="width: 36rem;">
+        <div class="card-body">
+            <h2 class="card-title h2">A guide to the SQL standard</h2>
+            <h4 class="card-subtitle mb-2 text-muted h4">AUTOR: Eduardo Date</h4>
+            <p class="card-text">ISBN: 002-1-86619-909-2
+            <p class="card-text">IDIOMA: Inglés</p>
+            <p class="card-text">Nº de ediciones: 3</p>
+            <p class="card-text">Edad recomendada: 12</p>
+            <p class="card-text">Editorial: Addison-Wesley-Church</p>
+        </div>
 
-<head>
-    <meta charset='UTF-8'>
-    <title>Portada - biblioteca </title>
-    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC' crossorigin='anonymous'>
-    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js' integrity='sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM' crossorigin='anonymous'></script>
-    <link rel='stylesheet' type='text/css' href='css/estilo.css'>
-</head>
 
-<body>
-    <nav class='navbar navbar-expand-lg navbar-light bg-light'>
-        <div class='container-fluid'>
-            <a class='navbar-brand' href='#'>Navbar</a>
-            <button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
-                          <span class='navbar-toggler-icon'></span>
-                      </button>
-            <div class='collapse navbar-collapse' id='navbarSupportedContent'>
-                <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
-                    <li class='nav-item'>
-                        <a class='nav-link active' aria-current='page' href='/libro/list'>LIBROS</a>
-                    </li>
-                    <li class='nav-item'>
-                        <a class='nav-link' href='#'>Link</a>
-                    </li>
-                    <li class='nav-item dropdown'>
-                        <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
-                              Dropdown
-                              </a>
-                        <ul class='dropdown-menu' aria-labelledby='navbarDropdown'>
-                            <li><a class='dropdown-item' href='#'>Action</a></li>
-                            <li><a class='dropdown-item' href='#'>Another action</a></li>
-                            <li>
-                                <hr class='dropdown-divider'>
-                            </li>
-                            <li><a class='dropdown-item' href='#'>Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class='nav-item'>
-                        <a class='nav-link disabled' href='#' tabindex='-1' aria-disabled='true'>Disabled</a>
-                    </li>
-                </ul>
-                <form class='d-flex' method='post' action='/libro/search'>
-                    <div class='mb-3'>
-                        <label for='exampleInputEmail1' class='form-label'>Campo</label>
-                        <select class='form-select' aria-label='Default select example' name="campo">
-                                  <option value='titulo' >Título</option>
-                                  <option value='isbn' >ISBN</option>
-                                  <option value='editorial' >Editorial</option>
-                                  <option value='autor' >Autor</option>
-                              </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="valor" class="form-label">Valor</label>
-                        <input type="text" class="form-control" id="valor" name="valor" aria-describedby="valorHelp">
-                        <div id="valorHelp" class="form-text">Escribe tu búsqueda.</div>
-                    </div>
-                    <div class='mb-3'>
-                        <label for='exampleInputEmail1' class='form-label'>Orden</label>
-                        <select class='form-select' aria-label='Default select example' name="orden">
-                                  <option value='titulo' >Título</option>
-                                  <option value='isbn' >ISBN</option>
-                                  <option value='editorial' >Editorial</option>
-                                  <option value='autor' >Autor</option>
-                              </select>
-                    </div>
-                    <div class='mb-3'>
-                        <label class="form-check-label" for="flexRadioDefault1">
-                                  ASC
-                                </label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="sentido" value="ASC" id="sentidoAsc" checked>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label" for="flexRadioDefault2">
-                                    DESC
-                                  </label>
-                            <input class="form-check-input" type="radio" name="sentido" value="DESC" id="sentidoDesc">
+
+        <h2 class='card-subtitle h2'>EJEMPLARES DEL LIBRO</h2>
+        <div class='accordion accordion-flush' id='accordionFlushExample'>
+            <div class='accordion-item'>
+                <h2 class='accordion-header' id='flush-heading23'>
+                    <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse'
+                        data-bs-target='#flush-collapse23' aria-expanded='false' aria-controls='flush-collapse23'>
+                        Ejemplar #id= 3
+                    </button>
+                    <!-- Modal borrar EJEMPLAR -->
+                    <div class='modal fade' id='destroyEjemplar3' tabindex='-1' aria-labelledby='destroyEjemplarLabel'
+                        aria-hidden='true'>
+                        <div class='modal-dialog'>
+                            <div class='modal-content'>
+                                <div class='modal-header'>
+                                    <h5 class='modal-title' id='destroyEjemplarLabel3'>Vas a borrar el ejemplar # 3 del
+                                        libro A guide to the SQL standard </h5>
+                                    <button type='button' class='btn-close' data-bs-dismiss='modal'
+                                        aria-label='Close'></button>
+                                </div>
+                                <div class='modal-body'>
+                                    <h5 class='modal-title' id='destroyEjemplarLabel3'>Esta acción es irreversible,
+                                        ¿estás seguro? </h5>
+                                    <form action='/ejemplar/destroy/3' method='post'>
+                                        <input type='hidden' class='form-control' name='id' value='3'>
+                                </div>
+                                <div class='modal-footer'>
+                                    <button type='button' class='btn btn-secondary'
+                                        data-bs-dismiss='modal'>Cerrar</button>
+                                    <button type='submit' class='btn btn-danger mx-auto' data-bs-toggle='modal'
+                                        data-bs-target='#destroyEjemplar3'>BORRAR EJEMPLAR</button>
+                                </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                    <div class='mb-3'>
-                        <div class="form-check">
-                            <button class='btn btn-outline-success' type='submit' name='search' value="search">SEARCH</button>
-                        </div>
-                    </div>
-                </form>
-                <div class='mb-3'>
-                    <a href='/libro/list'><button class='btn btn-outline-success' type='button' >LIMPIAR</button></a>
+                </h2>
+                <div id='flush-collapse23' class='accordion-collapse collapse' aria-labelledby='flush-heading23'
+                    data-bs-parent='#accordionFlushExample'>
+                    <div class='accordion-body'>Precio: <code>9.9 €</code> Año: 1994 Edición: 2 </div>
                 </div>
             </div>
-        </div>
-    </nav>
-
-
-    <div class="container-fluid">
-        <div class="card" style="width: 36rem;">
-            <div class="card-body">
-                <h2 class="card-title h2">A guide to the SQL standard</h2>
-                <h4 class="card-subtitle mb-2 text-muted h4">Date</h4>
-                <p class="card-text">ISBN: 002-1-86619-909-2
-                    <p class="card-text">IDIOMA: Inglés</p>
-                    <p class="card-text">Nº de ediciones: 3</p>
-                    <p class="card-text">Edad recomendada: 12</p>
+            <div class='accordion-item'>
+                <h2 class='accordion-header' id='flush-heading24'>
+                    <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse'
+                        data-bs-target='#flush-collapse24' aria-expanded='false' aria-controls='flush-collapse24'>
+                        Ejemplar #id= 4
+                    </button>
+                    <!-- Modal borrar EJEMPLAR -->
+                    <div class='modal fade' id='destroyEjemplar4' tabindex='-1' aria-labelledby='destroyEjemplarLabel'
+                        aria-hidden='true'>
+                        <div class='modal-dialog'>
+                            <div class='modal-content'>
+                                <div class='modal-header'>
+                                    <h5 class='modal-title' id='destroyEjemplarLabel4'>Vas a borrar el ejemplar # 4 del
+                                        libro A guide to the SQL standard </h5>
+                                    <button type='button' class='btn-close' data-bs-dismiss='modal'
+                                        aria-label='Close'></button>
+                                </div>
+                                <div class='modal-body'>
+                                    <h5 class='modal-title' id='destroyEjemplarLabel4'>Esta acción es irreversible,
+                                        ¿estás seguro? </h5>
+                                    <form action='/ejemplar/destroy/4' method='post'>
+                                        <input type='hidden' class='form-control' name='id' value='4'>
+                                </div>
+                                <div class='modal-footer'>
+                                    <button type='button' class='btn btn-secondary'
+                                        data-bs-dismiss='modal'>Cerrar</button>
+                                    <button type='submit' class='btn btn-danger mx-auto' data-bs-toggle='modal'
+                                        data-bs-target='#destroyEjemplar4'>BORRAR EJEMPLAR</button>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </h2>
+                <div id='flush-collapse24' class='accordion-collapse collapse' aria-labelledby='flush-heading24'
+                    data-bs-parent='#accordionFlushExample'>
+                    <div class='accordion-body'>Precio: <code>9.9 €</code> Año: 1994 Edición: 2 </div>
+                </div>
             </div>
+            <div class='accordion-item'>
+                <h2 class='accordion-header' id='flush-heading35'>
+                    <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse'
+                        data-bs-target='#flush-collapse35' aria-expanded='false' aria-controls='flush-collapse35'>
+                        Ejemplar #id= 5
+                    </button>
+                    <!-- Modal borrar EJEMPLAR -->
+                    <div class='modal fade' id='destroyEjemplar5' tabindex='-1' aria-labelledby='destroyEjemplarLabel'
+                        aria-hidden='true'>
+                        <div class='modal-dialog'>
+                            <div class='modal-content'>
+                                <div class='modal-header'>
+                                    <h5 class='modal-title' id='destroyEjemplarLabel5'>Vas a borrar el ejemplar # 5 del
+                                        libro A guide to the SQL standard </h5>
+                                    <button type='button' class='btn-close' data-bs-dismiss='modal'
+                                        aria-label='Close'></button>
+                                </div>
+                                <div class='modal-body'>
+                                    <h5 class='modal-title' id='destroyEjemplarLabel5'>Esta acción es irreversible,
+                                        ¿estás seguro? </h5>
+                                    <form action='/ejemplar/destroy/5' method='post'>
+                                        <input type='hidden' class='form-control' name='id' value='5'>
+                                </div>
+                                <div class='modal-footer'>
+                                    <button type='button' class='btn btn-secondary'
+                                        data-bs-dismiss='modal'>Cerrar</button>
+                                    <button type='submit' class='btn btn-danger mx-auto' data-bs-toggle='modal'
+                                        data-bs-target='#destroyEjemplar5'>BORRAR EJEMPLAR</button>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </h2>
+                <div id='flush-collapse35' class='accordion-collapse collapse' aria-labelledby='flush-heading35'
+                    data-bs-parent='#accordionFlushExample'>
+                    <div class='accordion-body'>Precio: <code>9.9 €</code> Año: 1997 Edición: 3 </div>
+                </div>
+            </div>
+            <div class='accordion-item'>
+                <h2 class='accordion-header' id='flush-heading119'>
+                    <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse'
+                        data-bs-target='#flush-collapse119' aria-expanded='false' aria-controls='flush-collapse119'>
+                        Ejemplar #id= 19
+                    </button>
+                    <!-- Modal borrar EJEMPLAR -->
+                    <div class='modal fade' id='destroyEjemplar19' tabindex='-1' aria-labelledby='destroyEjemplarLabel'
+                        aria-hidden='true'>
+                        <div class='modal-dialog'>
+                            <div class='modal-content'>
+                                <div class='modal-header'>
+                                    <h5 class='modal-title' id='destroyEjemplarLabel19'>Vas a borrar el ejemplar # 19
+                                        del libro A guide to the SQL standard </h5>
+                                    <button type='button' class='btn-close' data-bs-dismiss='modal'
+                                        aria-label='Close'></button>
+                                </div>
+                                <div class='modal-body'>
+                                    <h5 class='modal-title' id='destroyEjemplarLabel19'>Esta acción es irreversible,
+                                        ¿estás seguro? </h5>
+                                    <form action='/ejemplar/destroy/19' method='post'>
+                                        <input type='hidden' class='form-control' name='id' value='19'>
+                                </div>
+                                <div class='modal-footer'>
+                                    <button type='button' class='btn btn-secondary'
+                                        data-bs-dismiss='modal'>Cerrar</button>
+                                    <button type='submit' class='btn btn-danger mx-auto' data-bs-toggle='modal'
+                                        data-bs-target='#destroyEjemplar19'>BORRAR EJEMPLAR</button>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </h2>
+                <div id='flush-collapse119' class='accordion-collapse collapse' aria-labelledby='flush-heading119'
+                    data-bs-parent='#accordionFlushExample'>
+                    <div class='accordion-body'>Precio: <code>19.9 €</code> Año: 2007 Edición: 1 </div>
+                </div>
+            </div>
+            <div class='accordion-item'>
+                <h2 class='accordion-header' id='flush-heading6374'>
+                    <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse'
+                        data-bs-target='#flush-collapse6374' aria-expanded='false' aria-controls='flush-collapse6374'>
+                        Ejemplar #id= 74
+                    </button>
+                    <!-- Modal borrar EJEMPLAR -->
+                    <div class='modal fade' id='destroyEjemplar74' tabindex='-1' aria-labelledby='destroyEjemplarLabel'
+                        aria-hidden='true'>
+                        <div class='modal-dialog'>
+                            <div class='modal-content'>
+                                <div class='modal-header'>
+                                    <h5 class='modal-title' id='destroyEjemplarLabel74'>Vas a borrar el ejemplar # 74
+                                        del libro A guide to the SQL standard </h5>
+                                    <button type='button' class='btn-close' data-bs-dismiss='modal'
+                                        aria-label='Close'></button>
+                                </div>
+                                <div class='modal-body'>
+                                    <h5 class='modal-title' id='destroyEjemplarLabel74'>Esta acción es irreversible,
+                                        ¿estás seguro? </h5>
+                                    <form action='/ejemplar/destroy/74' method='post'>
+                                        <input type='hidden' class='form-control' name='id' value='74'>
+                                </div>
+                                <div class='modal-footer'>
+                                    <button type='button' class='btn btn-secondary'
+                                        data-bs-dismiss='modal'>Cerrar</button>
+                                    <button type='submit' class='btn btn-danger mx-auto' data-bs-toggle='modal'
+                                        data-bs-target='#destroyEjemplar74'>BORRAR EJEMPLAR</button>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </h2>
+                <div id='flush-collapse6374' class='accordion-collapse collapse' aria-labelledby='flush-heading6374'
+                    data-bs-parent='#accordionFlushExample'>
+                    <div class='accordion-body'>Precio: <code>2000 €</code> Año: 1980 Edición: 63 </div>
+                </div>
+            </div>
+            <div class='accordion-item'>
+                <h2 class='accordion-header' id='flush-heading1580'>
+                    <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse'
+                        data-bs-target='#flush-collapse1580' aria-expanded='false' aria-controls='flush-collapse1580'>
+                        Ejemplar #id= 80
+                    </button>
+                    <!-- Modal borrar EJEMPLAR -->
+                    <div class='modal fade' id='destroyEjemplar80' tabindex='-1' aria-labelledby='destroyEjemplarLabel'
+                        aria-hidden='true'>
+                        <div class='modal-dialog'>
+                            <div class='modal-content'>
+                                <div class='modal-header'>
+                                    <h5 class='modal-title' id='destroyEjemplarLabel80'>Vas a borrar el ejemplar # 80
+                                        del libro A guide to the SQL standard </h5>
+                                    <button type='button' class='btn-close' data-bs-dismiss='modal'
+                                        aria-label='Close'></button>
+                                </div>
+                                <div class='modal-body'>
+                                    <h5 class='modal-title' id='destroyEjemplarLabel80'>Esta acción es irreversible,
+                                        ¿estás seguro? </h5>
+                                    <form action='/ejemplar/destroy/80' method='post'>
+                                        <input type='hidden' class='form-control' name='id' value='80'>
+                                </div>
+                                <div class='modal-footer'>
+                                    <button type='button' class='btn btn-secondary'
+                                        data-bs-dismiss='modal'>Cerrar</button>
+                                    <button type='submit' class='btn btn-danger mx-auto' data-bs-toggle='modal'
+                                        data-bs-target='#destroyEjemplar80'>BORRAR EJEMPLAR</button>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </h2>
+                <div id='flush-collapse1580' class='accordion-collapse collapse' aria-labelledby='flush-heading1580'
+                    data-bs-parent='#accordionFlushExample'>
+                    <div class='accordion-body'>Precio: <code>18 €</code> Año: 2022 Edición: 15 </div>
+                </div>
+            </div>
+            <div class='accordion-item'>
+                <h2 class='accordion-header' id='flush-heading1581'>
+                    <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse'
+                        data-bs-target='#flush-collapse1581' aria-expanded='false' aria-controls='flush-collapse1581'>
+                        Ejemplar #id= 81
+                    </button>
+                    <!-- Modal borrar EJEMPLAR -->
+                    <div class='modal fade' id='destroyEjemplar81' tabindex='-1' aria-labelledby='destroyEjemplarLabel'
+                        aria-hidden='true'>
+                        <div class='modal-dialog'>
+                            <div class='modal-content'>
+                                <div class='modal-header'>
+                                    <h5 class='modal-title' id='destroyEjemplarLabel81'>Vas a borrar el ejemplar # 81
+                                        del libro A guide to the SQL standard </h5>
+                                    <button type='button' class='btn-close' data-bs-dismiss='modal'
+                                        aria-label='Close'></button>
+                                </div>
+                                <div class='modal-body'>
+                                    <h5 class='modal-title' id='destroyEjemplarLabel81'>Esta acción es irreversible,
+                                        ¿estás seguro? </h5>
+                                    <form action='/ejemplar/destroy/81' method='post'>
+                                        <input type='hidden' class='form-control' name='id' value='81'>
+                                </div>
+                                <div class='modal-footer'>
+                                    <button type='button' class='btn btn-secondary'
+                                        data-bs-dismiss='modal'>Cerrar</button>
+                                    <button type='submit' class='btn btn-danger mx-auto' data-bs-toggle='modal'
+                                        data-bs-target='#destroyEjemplar81'>BORRAR EJEMPLAR</button>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </h2>
+                <div id='flush-collapse1581' class='accordion-collapse collapse' aria-labelledby='flush-heading1581'
+                    data-bs-parent='#accordionFlushExample'>
+                    <div class='accordion-body'>Precio: <code>18 €</code> Año: 2022 Edición: 15 </div>
+                </div>
+            </div>
+            </div'>
+
+
+            <h2 class="h2">Temas del libro A guide to the SQL standard</h2>
 
             <div class='accordion accordion-flush' id='accordionFlushExample'>
                 <div class='accordion-item'>
-                    <h2 class='accordion-header' id='flush-heading3'>
-                        <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapse3' aria-expanded='false' aria-controls='flush-collapse3'>
-                    Ejemplar #id= 3
-                </button>
+                    <h2 class='accordion-header' id='flush-heading1'>
+                        <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse'
+                            data-bs-target='#flush-collapse1' aria-expanded='false' aria-controls='flush-collapse81'>
+                            Bases de datos
+                        </button>
                     </h2>
-                    <div id='flush-collapse3' class='accordion-collapse collapse' aria-labelledby='flush-heading3' data-bs-parent='#accordionFlushExample'>
-                        <div class='accordion-body'>Precio: <code>9.9 €</code> Año: 1994 Edición: 2 </div>
+                    <div id='flush-collapse1' class='accordion-collapse collapse' aria-labelledby='flush-heading1'
+                        data-bs-parent='#accordionFlushExample'>
+                        <div class='accordion-body'>Descripción: Fundamentos, teoría y aplicaciones de las BDD </div>
                     </div>
                 </div>
                 <div class='accordion-item'>
-                    <h2 class='accordion-header' id='flush-heading4'>
-                        <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapse4' aria-expanded='false' aria-controls='flush-collapse4'>
-                    Ejemplar #id= 4
-                </button>
+                    <h2 class='accordion-header' id='flush-heading2'>
+                        <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse'
+                            data-bs-target='#flush-collapse2' aria-expanded='false' aria-controls='flush-collapse81'>
+                            SQL
+                        </button>
                     </h2>
-                    <div id='flush-collapse4' class='accordion-collapse collapse' aria-labelledby='flush-heading4' data-bs-parent='#accordionFlushExample'>
-                        <div class='accordion-body'>Precio: <code>9.9 €</code> Año: 1994 Edición: 2 </div>
+                    <div id='flush-collapse2' class='accordion-collapse collapse' aria-labelledby='flush-heading2'
+                        data-bs-parent='#accordionFlushExample'>
+                        <div class='accordion-body'>Descripción: Lenguajes de consultas para BDD </div>
                     </div>
                 </div>
-                <div class='accordion-item'>
-                    <h2 class='accordion-header' id='flush-heading5'>
-                        <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapse5' aria-expanded='false' aria-controls='flush-collapse5'>
-                    Ejemplar #id= 5
-                </button>
-                    </h2>
-                    <div id='flush-collapse5' class='accordion-collapse collapse' aria-labelledby='flush-heading5' data-bs-parent='#accordionFlushExample'>
-                        <div class='accordion-body'>Precio: <code>9.9 €</code> Año: 1997 Edición: 3 </div>
-                    </div>
-                </div>
-                <div class='accordion-item'>
-                    <h2 class='accordion-header' id='flush-heading19'>
-                        <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapse19' aria-expanded='false' aria-controls='flush-collapse19'>
-                    Ejemplar #id= 19
-                </button>
-                    </h2>
-                    <div id='flush-collapse19' class='accordion-collapse collapse' aria-labelledby='flush-heading19' data-bs-parent='#accordionFlushExample'>
-                        <div class='accordion-body'>Precio: <code>19.9 €</code> Año: 2007 Edición: 1 </div>
-                    </div>
-                </div>
-            </div '>
-<!--AÑADIR EJEMPALRES DEL LIBRO-->
-<a href="/ejemplar/create/2">AÑADIR EJEMPLAR</a>
-
-<h2 class="h2">Temas del libro A guide to the SQL standard</h2>
-
-<div class='accordion accordion-flush ' id='accordionFlushExample '><div class='accordion-item '>
-                <h2 class='accordion-header ' id='flush-heading1 '>
-                    <button class='accordion-button collapsed ' type='button ' data-bs-toggle='collapse ' data-bs-target='#flush-collapse1 ' aria-expanded='false ' aria-controls='flush-collapse19 '>
-                    Bases de datos
-                </button>
-                </h2>
-                <div id='flush-collapse1 ' class='accordion-collapse collapse ' aria-labelledby='flush-heading1 ' data-bs-parent='#accordionFlushExample '>
-                    <div class='accordion-body '>Descripción: Fundamentos, teoría y aplicaciones de las BDD </div>
-                </div>
-            </div><div class='accordion-item '>
-                <h2 class='accordion-header ' id='flush-heading2 '>
-                    <button class='accordion-button collapsed ' type='button ' data-bs-toggle='collapse ' data-bs-target='#flush-collapse2 ' aria-expanded='false ' aria-controls='flush-collapse19 '>
-                    SQL
-                </button>
-                </h2>
-                <div id='flush-collapse2 ' class='accordion-collapse collapse ' aria-labelledby='flush-heading2 ' data-bs-parent='#accordionFlushExample '>
-                    <div class='accordion-body '>Descripción: Lenguajes de consultas para BDD </div>
-                </div>
-            </div></div'></div>
+                </div'>
+            </div>
+        </div>
     </div>
+</div>
 
 
     <!-- Footer -->
@@ -179,7 +330,7 @@
         <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
             <!-- Left -->
             <div class="me-5 d-none d-lg-block">
-                <span>Get connected with us on social networks:</span>
+                <span>AQUÍ IRÍAN ENLACES A REDES SOCIALES:</span>
             </div>
             <!-- Left -->
 
@@ -217,10 +368,10 @@
                     <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                         <!-- Content -->
                         <h6 class="text-uppercase fw-bold mb-4">
-                            <i class="fas fa-gem me-3"></i>Company name
+                            <i class="fas fa-gem me-3"></i>LA BIBLIO
                         </h6>
                         <p>
-                            Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            ESPACIO PARA ORGANIZAR EL FOOTER
                         </p>
                     </div>
                     <!-- Grid column -->
@@ -229,19 +380,19 @@
                     <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
                         <!-- Links -->
                         <h6 class="text-uppercase fw-bold mb-4">
-                            Products
+                            ÚLTIMO TEMAS AÑADIDOS
                         </h6>
                         <p>
-                            <a href="#!" class="text-reset">Angular</a>
+                            <a href='/libro/tema/19' class='text-reset'>Fotografía</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-reset">React</a>
+                            <a href='/libro/tema/18' class='text-reset'>Naturaleza</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-reset">Vue</a>
+                            <a href='/libro/tema/17' class='text-reset'>Cómic</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-reset">Laravel</a>
+                            <a href='/libro/tema/16' class='text-reset'>Ingeniería</a>
                         </p>
                     </div>
                     <!-- Grid column -->
@@ -250,33 +401,36 @@
                     <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                         <!-- Links -->
                         <h6 class="text-uppercase fw-bold mb-4">
-                            Useful links
+                            ÚLTIMOS LIBROS AÑADIDOS
                         </h6>
                         <p>
-                            <a href="#!" class="text-reset">Pricing</a>
+                            <a href='/libro/show/42' class='text-reset'>Rojo y Negro</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-reset">Settings</a>
+                            <a href='/libro/show/41' class='text-reset'>Romeo y Julieta</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-reset">Orders</a>
+                            <a href='/libro/show/40' class='text-reset'>Don Quijote lorem ipsum</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-reset">Help</a>
+                            <a href='/libro/show/39' class='text-reset'>Un nuevo libro</a>
                         </p>
+
+
                     </div>
                     <!-- Grid column -->
 
                     <!-- Grid column -->
                     <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                         <!-- Links -->
-                        <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-                        <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
+                        <h6 class="text-uppercase fw-bold mb-4">Contacto</h6>
+                        <p><i class="fas fa-home me-3"></i> CIFO Sabadell</p>
                         <p>
-                            <i class="fas fa-envelope me-3"></i> info@example.com
+                            <i class="fas fa-envelope me-3"></i>
+                            info@cifo.com
                         </p>
-                        <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
-                        <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+                        <p><i class="fas fa-phone me-3"></i> + 34 606 566 566</p>
+                        <p><i class="fas fa-print me-3"></i> + 34 606 234 567</p>
                     </div>
                     <!-- Grid column -->
                 </div>
@@ -287,12 +441,13 @@
 
         <!-- Copyright -->
         <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-            © 2021 Copyright:
-            <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+            © 2022 Copyright:
+            <a class="text-reset fw-bold" href="https://packagist.org/packages/robertsallent/fastlight">Realizado sobre
+                el framework FastLight desarrollado por Robert Sallent</a>
         </div>
         <!-- Copyright -->
     </footer>
     <!-- Footer -->
-</body>
+    </body>
 
-</html>
+    </html>

@@ -42,7 +42,8 @@
     	
     	// retorna si el usuario tiene un nivel de privilegio determinado (o más)
     	public static function hasPrivilege(int $p):bool{
-    	    return self::$identificado && self::$identificado->privilegio >= $p;
+			
+    	    return self::$identificado && intval(self::$identificado->privilegio) >= $p;
     	}
     }
     

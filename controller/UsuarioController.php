@@ -26,7 +26,7 @@ class UsuarioController{
 
         // esta operación solamente la puede hacer el administrador
         // o bien el usuario propietario de los datos que se muestran
-        if(! (Login::isAdmin() || Login::get()->id == $id))
+        if(! (Login::isAdmin()))
             throw new Exception('No tienes los permisos necesarios');
 
         // recuperar el usuario
@@ -41,11 +41,17 @@ class UsuarioController{
 
     // muestra el formulario de nuevo usuario
     public function create(){
+        if(! (Login::isAdmin()))
+            throw new Exception('No tienes los permisos necesarios');
+
         include '../views/admin/nuevo.php';
     }
 
     // guarda el nuevo usuario
     public function store(){
+
+        if(! (Login::isAdmin()))
+            throw new Exception('No tienes los permisos necesarios');
 
         // comprueba que llegue el formulario con los datos
         if(empty($_POST['guardar']))
@@ -73,12 +79,11 @@ class UsuarioController{
 
     // muestra el formulario de edición de un usuario
     public function edit(int $id = 0){
-        $U = Usuario::identificar( 'pacojaez@gmail.com', md5('1234'));
-        Login::set($U);
+       
         // esta operación solamente la puede hacer el administrador
         // o bien el usuario propietario de los datos que se muestran
-        // if(! (Login::isAdmin() || Login::get()->id == $id))
-        //     throw new Exception('No tienes los permisos necesarios');
+        if(! (Login::isAdmin()))
+            throw new Exception('No tienes los permisos necesarios');
 
         // recuperar el usuario
         if(!$usuario = Usuario::getById($id))
@@ -94,7 +99,7 @@ class UsuarioController{
 
         // esta operación solamente la puede hacer el administrador
         // o bien el usuario propietario de los datos que se muestran
-        if(! (Login::isAdmin() || Login::get()->id == $id))
+        if(! (Login::isAdmin()))
             throw new Exception('No tienes los permisos necesarios');
 
         // comprueba que llegue el formulario con los datos
@@ -137,7 +142,7 @@ class UsuarioController{
 
          // esta operación solamente la puede hacer el administrador
         // o bien el usuario propietario de los datos que se muestran
-        if(! (Login::isAdmin() || Login::get()->id == $id))
+        if(! (Login::isAdmin()))
             throw new Exception('No tienes los permisos necesarios');
 
         // recupera el usuario para mostrar sus datos en la vista
@@ -156,7 +161,7 @@ class UsuarioController{
 
         // esta operación solamente la puede hacer el administrador
         // o bien el usuario propietario de los datos que se muestran
-        if(! (Login::isAdmin() || Login::get()->id == $id))
+        if(! (Login::isAdmin()))
             throw new Exception('No tienes los permisos necesarios');
 
         // borra el usuario de la BDD

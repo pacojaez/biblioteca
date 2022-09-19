@@ -7,6 +7,7 @@ Basic::getHeader();
 		<h2>Error en la operación solicitada</h2>
 
 		<p class='error'><?=$mensaje?></p>
+		<img src="/assets/img/Error.jpg" width="50%" alt="error en la operación">
 		<?php
 Basic::getFooter();
 ?>

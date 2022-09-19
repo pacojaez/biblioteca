@@ -35,7 +35,7 @@ public function prueba(){
 
 // muestra el formulario de nueva Ejemplar
 public function create(){
-    if(!Login::isAdmin() || Login::hasPrivilege(300))
+    if(! (Login::isAdmin() || Login::hasPrivilege(300)))
        throw new Exception('No tienes permiso para hacer esto');
     include '../views/ejemplar/nuevo.php';
 }
@@ -43,8 +43,8 @@ public function create(){
 // guarda el nuevo Ejemplar
 public function store(){
 
-    if(!Login::isAdmin() || Login::hasPrivilege(300))
-       throw new Exception('No tienes permiso para hacer esto');
+    if(! (Login::isAdmin() || Login::hasPrivilege(300)))
+       throw new Exception('No tienes permiso para hacer esto !!!!!!!!!!!!!!!!!');
 
     // comprueba que llegue el formulario con los datos
     if(empty($_POST['guardar']))
@@ -73,14 +73,14 @@ public function edit(int $id = 0){
 
     // esta operación solamente la puede hacer el administrador
     // o bien el Ejemplar propietario de los datos que se muestran
-    if(!Login::isAdmin() || Login::hasPrivilege(300))
-       throw new Exception('No tienes permiso para hacer esto');
+    // if(!Login::isAdmin() || Login::hasPrivilege(300))
+    //    throw new Exception('No tienes permiso para hacer esto');
 
-    // recuperar el Ejemplar
-    if(!$Ejemplar = Ejemplar::getById($id))
-        throw new Exception("No se indicó la Ejemplar.");
-    // mostrar el formulario de edición
-    include "views/blog/actualizar.php";
+    // // recuperar el Ejemplar
+    // if(!$ejemplar = Ejemplar::getById($id))
+    //     throw new Exception("No se indicó la Ejemplar.");
+    // // mostrar el formulario de edición
+    // include "views/blog/actualizar.php";
 }
 
 
@@ -88,41 +88,41 @@ public function edit(int $id = 0){
 public function update(){
 
     // esta operación solamente la puede hacer el administrador
-    // o bien el Ejemplar propietario de los datos que se muestran
-    if(!Login::isAdmin() || Login::hasPrivilege(300))
-    throw new Exception('No tienes permiso para hacer esto');
+    // // o bien el Ejemplar propietario de los datos que se muestran
+    // if(!Login::isAdmin() || Login::hasPrivilege(300))
+    // throw new Exception('No tienes permiso para hacer esto');
 
-    // comprueba que llegue el formulario con los datos
-    if(empty($_POST['actualizar']))
-        throw new Exception('No se recibieron datos');
+    // // comprueba que llegue el formulario con los datos
+    // if(empty($_POST['actualizar']))
+    //     throw new Exception('No se recibieron datos');
 
-    $id = intval($_POST['id']); // recuperar el id vía POST
+    // $id = intval($_POST['id']); // recuperar el id vía POST
 
-    // recuperar la Ejemplar
-    // recuperar el Ejemplar
-    if(!$Ejemplar =Ejemplar::getById($id))
-        throw new Exception("No existe la Ejemplar $id.");
+    // // recuperar la Ejemplar
+    // // recuperar el Ejemplar
+    // if(!$Ejemplar =Ejemplar::getById($id))
+    //     throw new Exception("No existe la Ejemplar $id.");
 
-    $Ejemplar->Ejemplar = DB::escape($_POST['Ejemplar']);
-    $Ejemplar->title = DB::escape($_POST['title']);
-    $Ejemplar->subtitle = DB::escape($_POST['subtitle']);
-    $Ejemplar->meta_description = DB::escape($_POST['meta_description']);
-    $Ejemplar->tags = DB::escape($_POST['tags']);
-    $Ejemplar->imagen = DB::escape($_POST['imagen']);
-    $Ejemplar->is_draft = empty($_POST['is_draft'])? 0 : 1;
-    $Ejemplar->id_Ejemplar = intval($_POST['id_Ejemplar']);
-    $Ejemplar->updated_at = date('Y-m-d h:i:s');
+    // $Ejemplar->Ejemplar = DB::escape($_POST['Ejemplar']);
+    // $Ejemplar->title = DB::escape($_POST['title']);
+    // $Ejemplar->subtitle = DB::escape($_POST['subtitle']);
+    // $Ejemplar->meta_description = DB::escape($_POST['meta_description']);
+    // $Ejemplar->tags = DB::escape($_POST['tags']);
+    // $Ejemplar->imagen = DB::escape($_POST['imagen']);
+    // $Ejemplar->is_draft = empty($_POST['is_draft'])? 0 : 1;
+    // $Ejemplar->id_Ejemplar = intval($_POST['id_Ejemplar']);
+    // $Ejemplar->updated_at = date('Y-m-d h:i:s');
 
-    // intenta realizar la actualización de datos
-    if($Ejemplar->actualizar()===false)
-        throw new Exception("No se pudo actualizar la Ejemplar: $Ejemplar->title");
+    // // intenta realizar la actualización de datos
+    // if($Ejemplar->actualizar()===false)
+    //     throw new Exception("No se pudo actualizar la Ejemplar: $Ejemplar->title");
 
-    // prepara un mensaje
-    $GLOBALS['mensaje'] = "Actualización de la Ejemplar: $Ejemplar->title correcta.";
-    $mensaje = 'Actualización correcta';
-    // repite la operación edit, así mantiene la vista de edición.
-    //$this->edit($Ejemplar->id);
-    include 'views/exito.php'; //mostrar éxito
+    // // prepara un mensaje
+    // $GLOBALS['mensaje'] = "Actualización de la Ejemplar: $Ejemplar->title correcta.";
+    // $mensaje = 'Actualización correcta';
+    // // repite la operación edit, así mantiene la vista de edición.
+    // //$this->edit($Ejemplar->id);
+    // include 'views/exito.php'; //mostrar éxito
 }
 
 
@@ -132,22 +132,22 @@ public function update(){
 public function delete(int $id = 0){
 
      // esta operación solamente la puede hacer el administrador
-    // o bien el Ejemplar propietario de los datos que se muestran
-    if(!Login::isAdmin() || Login::hasPrivilege(300))
-       throw new Exception('No tienes permiso para hacer esto');
+    // // o bien el Ejemplar propietario de los datos que se muestran
+    // if(!Login::isAdmin() || Login::hasPrivilege(300))
+    //    throw new Exception('No tienes permiso para hacer esto');
 
-    // recupera el Ejemplar para mostrar sus datos en la vista
-    if(!$Ejemplar = Ejemplar::getById($id))
-        throw new Exception("No existe el Ejemplar $id.");
+    // // recupera el Ejemplar para mostrar sus datos en la vista
+    // if(!$Ejemplar = Ejemplar::getById($id))
+    //     throw new Exception("No existe el Ejemplar $id.");
 
-    // carga la vista de confirmación de borrado
-    include 'views/Ejemplar/borrar.php';
+    // // carga la vista de confirmación de borrado
+    // include 'views/Ejemplar/borrar.php';
 }
 
 //elimina el Ejemplar
 public function destroy(){
 
-    if(!Login::isAdmin() || Login::hasPrivilege(300))
+    if(! (Login::isAdmin() || Login::hasPrivilege(300)))
        throw new Exception('No tienes permiso para hacer esto');
 
     //recuperar el identificador vía POST
