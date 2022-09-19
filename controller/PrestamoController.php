@@ -41,6 +41,18 @@ class PrestamoController{
         if(empty($p_guardar))
             throw new Exception('No se recibieron datos');
 
+            // // verificar si el ejemplar está disponible para el préstamo (devolución=NULL)
+            $verificado = Prestamo::verificarDisponibilidadPrestamo(Prestamo::getById($p_idejemplar)->id);
+            
+            if($verificado){
+                $socio = Socio::getById($verificado[0]->idsocio);
+                $limite = Prestamo::getById($p_idejemplar)->limite;
+                $GLOBALS['mensaje'] = "Este ejemplar no se puede prestar. Lo tiene el socio $verificado[0]  ";
+                $mensaje = "EJEMPLAR NO DISPONIBLE PARA EL PRÉSTAMO <br>DATOS DEL PRÉSTAMO:<br> SOCIO: $socio->nombre $socio->apellidos ID: $socio->id.<br> Fecha límite de devolución $limite";
+                include '../views/error.php'; //mostrar érror
+                return;
+            }
+                
             $prestamo = new Prestamo(); //crear el nuevo usuario
 
             $prestamo->idsocio = DB::escape($p_idsocio);

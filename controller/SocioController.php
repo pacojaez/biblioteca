@@ -119,11 +119,11 @@ class SocioController {
         unset($_POST['actualizar']);
        
         $datosActualizar = array_filter($_POST);
-// var_dump($socio);
+
         foreach ( $datosActualizar as $key=>$valor){
             $socio->$key = $valor;            
         }
-// var_dump($socio);die();
+
             // $socio->nombre = DB::escape($p_nombre);
             // $socio->dni = DB::escape($p_dni);
             // $socio->apellidos = DB::escape($p_apellidos);
@@ -135,7 +135,6 @@ class SocioController {
             // $socio->cp = DB::escape($p_cp);
             // $socio->telefono = DB::escape($p_telefono);
 
-            // var_dump();die();
 
         // intenta realizar la actualización de datos
         if($socio->actualizar()===false)

@@ -27,9 +27,9 @@ Basic::getHeader();
                             <form action='/prestamo/crear' method='post'>
                                 <input type='hidden' class='form-control' name='idsocio' value="<?= $socio->id ?>">
                                 <label for="limite" class="form-label">Fecha límite devolución</label>
-                                <input type='date' class='form-control' name='limite' value="limite">
+                                <input type='date' class='form-control' name='limite'>
                                 <label for="idejemplar" class="form-label">ID del Ejemplar</label>
-                                <input type='text' class='form-control' name='idejemplar' value="idejemplar" >
+                                <input type='number' class='form-control' name='idejemplar' >
                                 <button type="submit" class="btn btn-primary" name="guardar" value="guardar">Añadir Prestamo</button>
                             </form>
                         </div>
@@ -84,6 +84,8 @@ Basic::getHeader();
                         <br>
                         Libro: $prestamo->titulo
                         <br>
+                        Ejemplar ID: $prestamo->ejemplarid
+                        <br>
                         Vencimiento: $prestamo->limite 
                     </button>
 
@@ -119,7 +121,9 @@ Basic::getHeader();
         }
         echo "</div'>";
     } else {
-        echo "<h3>Este socio no tiene prestamos sin devolver</h3>";
+        echo "<h2 class='card-subtitle h2'>PRÉSTAMOS SIN DEVOLVER</h2>";
+        echo "<h4>Este socio no tiene prestamos sin devolver</h4>";
+        ECHO "<hr>";
     }
     ?>
 
@@ -134,6 +138,8 @@ Basic::getHeader();
                         Prestamo #id= $prestamo->id
                         <br>
                         Libro: $prestamo->titulo
+                        <br>
+                        Ejemplar ID: $prestamo->ejemplarid
                         <br>
                         Vencimiento: $prestamo->limite 
                     </button>

@@ -53,11 +53,11 @@ class Basic {
                           <li class='nav-item'>
                               <a class='nav-link' href='/socio/list'>SOCIOS</a>
                           </li>
-                          <li class='nav-item'>
+                          <!-- <li class='nav-item'>
                               <a class='nav-link disabled' href='#' tabindex='-1' aria-disabled='true'>Disabled</a>
-                          </li>
+                          </li> -->
                           </ul>
-                          <form class='d-flex' method='post' action='/libro/search'>
+                          <!-- <form class='d-flex' method='post' action='/libro/search'>
                             <div class='mb-3'>
                               <label for='campo' class='form-label'>Campo</label>
                               <select class='form-select' aria-label='Default select example' name="campo">
@@ -100,10 +100,10 @@ class Basic {
                                 <button class='btn btn-outline-success' type='submit' name='search' value="search">SEARCH</button>
                               </div>
                             </div>
-                          </form>
-                          <div class='mb-3'>
+                          </form> -->
+                          <!-- <div class='mb-3'>
                             <a href='/libro/list'><button class='btn btn-outline-success' type='button' >LIMPIAR</button></a>
-                          </div>
+                          </div> -->
                     </div>
               </div>
             </nav>

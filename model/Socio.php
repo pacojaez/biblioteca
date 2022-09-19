@@ -8,7 +8,7 @@ class Socio extends Model {
             // $consulta = "SELECT * FROM prestamos
             // WHERE idsocio=$id AND devolucion IS NULL ORDER BY limite ASC;";
 
-            $consulta = "SELECT p.*, l.titulo FROM prestamos p  
+            $consulta = "SELECT p.*, l.titulo, e.id as ejemplarid FROM prestamos p  
                             INNER JOIN ejemplares e ON e.id = p.idejemplar
                             INNER JOIN libros l ON l.id = e.idlibro 
                             WHERE p.idsocio=$id 
@@ -17,8 +17,6 @@ class Socio extends Model {
                             ASC;";
             
             return DB::selectAll($consulta, 'Prestamo');
-            // $fet = DB::selectAll($consulta, 'Prestamo');
-            // var_dump($fet); die();
         
     }
 
@@ -28,7 +26,7 @@ class Socio extends Model {
         
     // $consulta = "SELECT * FROM prestamos
     // WHERE idsocio=$id AND devolucion IS NOT NULL ORDER BY devolucion DESC;";
-    $consulta ="SELECT p.*, l.titulo FROM prestamos p  
+    $consulta ="SELECT p.*, l.titulo, e.id as ejemplarid FROM prestamos p  
                             INNER JOIN ejemplares e ON e.id = p.idejemplar
                             INNER JOIN libros l ON l.id = e.idlibro 
                             WHERE p.idsocio=$id 
