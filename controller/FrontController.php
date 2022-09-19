@@ -6,6 +6,9 @@
         // método principal del controlador frontal
         public static function main(){
             try{
+
+                //inicializamos el sistema de Login
+                Login::init();
                 // GESTIÓN DE PETICIONES 
                
                 // recupera el controlador de la petición

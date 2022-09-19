@@ -15,7 +15,7 @@ class Basic {
                         <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js' integrity='sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM' crossorigin='anonymous'></script>
                         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
                         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
-                        <link rel='stylesheet' type='text/css' href='css/estilo.css'>
+                        <!-- <link rel='stylesheet' type='text/css' href='css/estilo.css'> -->
                     </head>
                     <body>
     <?php 
@@ -25,7 +25,7 @@ class Basic {
     public static function getHeader(){?>
         <nav class='navbar navbar-expand-lg navbar-light bg-light'>
                 <div class='container-fluid'>
-                      <a class='navbar-brand' href='#'>LA BIBLIO</a>
+                      <a class='navbar-brand' href='/'>LA BIBLIO</a>
                       <button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
                           <span class='navbar-toggler-icon'></span>
                       </button>
@@ -50,9 +50,18 @@ class Basic {
                               ?>
                               </ul>
                           </li>
+                          <?php if(Login::isAdmin() || Login::hasPrivilege(300)){?>
                           <li class='nav-item'>
                               <a class='nav-link' href='/socio/list'>SOCIOS</a>
                           </li>
+                          <?php }?>
+                          <?php if(Login::isAdmin()){?>
+                          <li class='nav-item'>
+                              <a class='nav-link' href='/usuario/list'>USUARIOS</a>
+                          </li>
+                          <?php }?>
+                          
+
                           <!-- <li class='nav-item'>
                               <a class='nav-link disabled' href='#' tabindex='-1' aria-disabled='true'>Disabled</a>
                           </li> -->
@@ -104,8 +113,16 @@ class Basic {
                           <!-- <div class='mb-3'>
                             <a href='/libro/list'><button class='btn btn-outline-success' type='button' >LIMPIAR</button></a>
                           </div> -->
+                          
                     </div>
+                    
               </div>
+              
+            </nav>
+            <nav class='navbar navbar-expand-lg navbar-light bg-light'>
+                <div class='container-fluid'>
+                  <?php self::login() ?>
+                </div>
             </nav>
             
     <?php }
@@ -239,6 +256,26 @@ class Basic {
         </html>
         ';
 
+    }
+
+
+    public static function login(){
+
+      $identificado = Login::get();
+      echo "<div class='collapse navbar-collapse' id='navbarSupportedContent'>
+              <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
+                <li class='nav-item'>";
+
+                echo $identificado ? 
+                  "Hola <a href='/usuario/show/$identificado->id'> $identificado->usuario</a>, <a href='/login/logout'> SALIR </a>" :
+                  "<a href='/login'> Identificate </a>";
+                
+                echo "</li>
+              </ul>
+            </div>";
+      // echo $identificado ? 
+      //             "Hola <a href='/usuario/show/$identificado->id'> $identificado->usuario</a>, <a href='/login/logout'><button class='btn btn-light ms-3'>Logout</button></a>" :
+      //             "<a href='/login'><button >Identificate</button> </a>";
     }
 
 }

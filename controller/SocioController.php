@@ -8,7 +8,6 @@ class SocioController {
         // solamente el administrador
         // if(!Login::isAdmin())
         //     throw new Exception('No tienes permiso para hacer esto');
-
         $socios = Socio::get();
         include '../views/socio/listar.php';
     }

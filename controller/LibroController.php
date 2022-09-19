@@ -58,11 +58,18 @@ public function show(int $id = 0){
 
 // muestra el formulario de nueva libro
 public function create(){
+
+    if(!Login::isAdmin() || Login::hasPrivilege(300))
+       throw new Exception('No tienes permiso para hacer esto');
+
     include '../views/libro/nuevo.php';
 }
 
 // guarda el nuevo libro
 public function store(){
+
+    if(!Login::isAdmin() || Login::hasPrivilege(300))
+       throw new Exception('No tienes permiso para hacer esto');
 
     // comprueba que llegue el formulario con los datos
     if(empty($_POST['guardar']))
@@ -93,8 +100,8 @@ public function edit(int $id = 0){
 
     // esta operación solamente la puede hacer el administrador
     // o bien el libro propietario de los datos que se muestran
-    // if(! (Login::isAdmin() || Login::get()->id == $id))
-    //     throw new Exception('No tienes los permisos necesarios');
+    if(!Login::isAdmin() || Login::hasPrivilege(300))
+        throw new Exception('No tienes permiso para hacer esto');
 
     // recuperar el libro
     if(!$libro = Libro::getById($id))
@@ -109,8 +116,8 @@ public function update( int $id ){
 
     // esta operación solamente la puede hacer el administrador
     // o bien el libro propietario de los datos que se muestran
-    // if(! (Login::isAdmin() || Login::get()->id == $id))
-    //     throw new Exception('No tienes los permisos necesarios');
+    if(!Login::isAdmin() || Login::hasPrivilege(300))
+       throw new Exception('No tienes permiso para hacer esto');
 
     /**
          * método para extraer los parámetros por GET con un prefijo
@@ -168,8 +175,8 @@ public function delete(int $id = 0){
 
      // esta operación solamente la puede hacer el administrador
     // o bien el libro propietario de los datos que se muestran
-    // if(! (Login::isAdmin() || Login::get()->id == $id))
-    //     throw new Exception('No tienes los permisos necesarios');
+    if(!Login::isAdmin() || Login::hasPrivilege(300))
+       throw new Exception('No tienes permiso para hacer esto');
 
     // recupera el libro para mostrar sus datos en la vista
     if(!$libro = libro::getById($id))
@@ -181,6 +188,9 @@ public function delete(int $id = 0){
 
 //elimina el libro
 public function destroy(){
+
+    if(!Login::isAdmin() || Login::hasPrivilege(300))
+       throw new Exception('No tienes permiso para hacer esto');
 
     //recuperar el identificador vía POST
     $id = empty($_POST['idlibro'])? 0 : intval($_POST['idlibro']);

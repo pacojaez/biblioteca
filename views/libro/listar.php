@@ -6,7 +6,11 @@ Basic::getHeader();
 <!-- content -->
 <div class="container">
 <h2 class="h2 mx-auto">LISTADO DE LIBROS</h2>
+
+<?php if(Login::isAdmin() || Login::hasPrivilege(300)){?>
 <a href="/libro/create"><button class="btn btn-primary">CREAR NUEVO LIBRO</button></a>
+<?php }?>
+
 </div>
 <div class="container">
 <table class="table table-striped" id="librosTable">

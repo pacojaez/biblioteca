@@ -4,9 +4,8 @@
     class Usuario{
 
         // PROPIEDADES
-        public $id=0, $usuario='', $clave='', $nombre='', $apellido1='', $apellido2='',
-               $privilegio=0, $administrador=0, $email='',
-               $imagen='', $created_at='', $updated_at='';
+        public $id=0, $usuario='', $clave='', $nombre='', $apellidos='',
+               $privilegio=0, $administrador=0, $email='', $created_at='';
 
 
        // Método que usaremos para comprobar el login.
@@ -39,11 +38,11 @@
        public function guardar(){
 
            $consulta="INSERT INTO usuarios(
-                          usuario, clave, nombre, apellido1, apellido2,
+                          usuario, clave, nombre, apellidos,
                           privilegio, administrador, email)
                        VALUES(
                           '$this->usuario','$this->clave', '$this->nombre',
-                          '$this->apellido1', '$this->apellido2',
+                          '$this->apellidos',
                            $this->privilegio, $this->administrador, '$this->email')";
 
            return DB::insert($consulta); //conectar y ejecutar
@@ -78,8 +77,7 @@
                           usuario='$this->usuario',
                           clave='$this->clave',
                           nombre='$this->nombre',
-                          apellido1='$this->apellido1',
-                          apellido2='$this->apellido2',
+                          apellidos='$this->apellidos',
                           privilegio=$this->privilegio,
                           administrador=$this->administrador,
                           email='$this->email'
@@ -96,6 +94,6 @@
 
         //__toString
         public function __toString():string{
-            return "$this->id: $this->usuario ($this->email) $this->nombre $this->apellido1";
+            return "$this->id: $this->usuario ($this->email) $this->nombre $this->apellidos";
         }
     }

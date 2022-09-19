@@ -1,8 +1,8 @@
 <?php
-Basic::getHead('TODOS LOS LIBROS');
+Basic::getHead('TODOS LOS SOCIOS');
 Basic::getHeader();
 ?>
-<h2 class="mx-auto">Actualizar el usuario <?= $socio->id ?></h2>
+<h2 class="mx-auto">Actualizar el SOCIO <?= $socio->id ?></h2>
 <div class="container m-5">
 <form class="row g-3" method="post" action="/socio/update/<?= $socio->id ?>">
   <div class="col-md-6">

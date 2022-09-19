@@ -35,11 +35,16 @@ public function prueba(){
 
 // muestra el formulario de nueva Ejemplar
 public function create(){
+    if(!Login::isAdmin() || Login::hasPrivilege(300))
+       throw new Exception('No tienes permiso para hacer esto');
     include '../views/ejemplar/nuevo.php';
 }
 
 // guarda el nuevo Ejemplar
 public function store(){
+
+    if(!Login::isAdmin() || Login::hasPrivilege(300))
+       throw new Exception('No tienes permiso para hacer esto');
 
     // comprueba que llegue el formulario con los datos
     if(empty($_POST['guardar']))
@@ -68,8 +73,8 @@ public function edit(int $id = 0){
 
     // esta operación solamente la puede hacer el administrador
     // o bien el Ejemplar propietario de los datos que se muestran
-    // if(! (Login::isAdmin() || Login::get()->id == $id))
-    //     throw new Exception('No tienes los permisos necesarios');
+    if(!Login::isAdmin() || Login::hasPrivilege(300))
+       throw new Exception('No tienes permiso para hacer esto');
 
     // recuperar el Ejemplar
     if(!$Ejemplar = Ejemplar::getById($id))
@@ -84,8 +89,8 @@ public function update(){
 
     // esta operación solamente la puede hacer el administrador
     // o bien el Ejemplar propietario de los datos que se muestran
-    // if(! (Login::isAdmin() || Login::get()->id == $id))
-    //     throw new Exception('No tienes los permisos necesarios');
+    if(!Login::isAdmin() || Login::hasPrivilege(300))
+    throw new Exception('No tienes permiso para hacer esto');
 
     // comprueba que llegue el formulario con los datos
     if(empty($_POST['actualizar']))
@@ -128,8 +133,8 @@ public function delete(int $id = 0){
 
      // esta operación solamente la puede hacer el administrador
     // o bien el Ejemplar propietario de los datos que se muestran
-    // if(! (Login::isAdmin() || Login::get()->id == $id))
-    //     throw new Exception('No tienes los permisos necesarios');
+    if(!Login::isAdmin() || Login::hasPrivilege(300))
+       throw new Exception('No tienes permiso para hacer esto');
 
     // recupera el Ejemplar para mostrar sus datos en la vista
     if(!$Ejemplar = Ejemplar::getById($id))
@@ -141,6 +146,9 @@ public function delete(int $id = 0){
 
 //elimina el Ejemplar
 public function destroy(){
+
+    if(!Login::isAdmin() || Login::hasPrivilege(300))
+       throw new Exception('No tienes permiso para hacer esto');
 
     //recuperar el identificador vía POST
     $id = empty($_POST['id'])? 0 : intval($_POST['id']);

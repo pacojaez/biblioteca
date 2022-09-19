@@ -14,7 +14,8 @@ Basic::getHeader();
             <p class="card-text">Edad recomendada: <?php echo "$libro->edadrecomendada" ?></p>
             <p class="card-text">Editorial: <?php echo "$libro->editorial" ?></p>
         </div>
-        <div class="card-body">
+        <?php if(Login::isAdmin() || Login::hasPrivilege(300)){?>
+            <div class="card-body">
             <a href="/libro/edit/<?= $libro->id ?>">
                 <button type="button" class="btn btn-secondary mx-auto">
                     EDITAR
@@ -22,7 +23,7 @@ Basic::getHeader();
             </a>
             <!--AÑADIR EJEMPLARES DEL LIBRO-->
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary mx-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" class="btn btn-primary mx-auto" data-bs-toggle="modal" data-bs-target="#AñadirEjemplarModal">
                 AÑADIR EJEMPLAR
             </button>
             <!-- Button trigger modal -->
@@ -31,6 +32,9 @@ Basic::getHeader();
             </button>
 
         </div>
+
+        <?php }?>
+        <?php if(Login::isAdmin() || Login::hasPrivilege(300)){?>
         <!-- Modal ELIMINAR LIBRO -->
         <div class="modal fade" id="borrarLibro" tabindex="-1">
             <div class="modal-dialog">
@@ -49,8 +53,10 @@ Basic::getHeader();
                 </div>
             </div>
         </div>
+        <?php }?>
+        <?php if(Login::isAdmin() || Login::hasPrivilege(300)){?>
         <!-- Modal AÑADIR EJEMPLAR -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="AñadirEjemplarModal" tabindex="-1" aria-labelledby="AñadirEjemplarModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -82,7 +88,7 @@ Basic::getHeader();
                 </div>
             </div>
         </div>
-
+        <?php }?>
 
 
 
@@ -95,10 +101,10 @@ Basic::getHeader();
                 $ejemplar->getEstadoEjemplar($ejemplar->id);
 
                 echo "<div class='accordion-item'>
-                <h2 class='accordion-header' id='flush-heading$ejemplar->id'>
-                    <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapse$ejemplar->id' aria-expanded='false' aria-controls='flush-collapse$ejemplar->id'>
+                <h2 class='accordion-header' id='flush-heading$ejemplar->edicion$ejemplar->id'>
+                    <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapse$ejemplar->edicion$ejemplar->id' aria-expanded='false' aria-controls='flush-collapse$ejemplar->edicion$ejemplar->id'>
                         Ejemplar #id= $ejemplar->id
-                    </button>          
+                    </button>       
                     <!-- Modal borrar EJEMPLAR -->
                     <div class='modal fade' id='destroyEjemplar$ejemplar->id' tabindex='-1' aria-labelledby='destroyEjemplarLabel' aria-hidden='true'>
                         <div class='modal-dialog'>
@@ -121,12 +127,17 @@ Basic::getHeader();
                         </div>
                     </div>
                 </h2>
-                <div id='flush-collapse$ejemplar->id' class='accordion-collapse collapse' aria-labelledby='flush-heading$ejemplar->id' data-bs-parent='#accordionFlushExample'>
-                    <div class='accordion-body'>Precio: <code>$ejemplar->precio €</code> Año: $ejemplar->anyo Edición: $ejemplar->edicion </div>
-                    <button type='button' class='btn btn-danger mx-auto' data-bs-toggle='modal' data-bs-target='#destroyEjemplar$ejemplar->id'>
+                <div id='flush-collapse$ejemplar->edicion$ejemplar->id' class='accordion-collapse collapse' aria-labelledby='flush-heading$ejemplar->edicion$ejemplar->id' data-bs-parent='#accordionFlushExample'>
+                    <div class='accordion-body'>Precio: <code>$ejemplar->precio €</code> Año: $ejemplar->anyo Edición: $ejemplar->edicion </div>";
+
+                if(Login::isAdmin() || Login::hasPrivilege(300)){
+                        echo "<button type='button' class='btn btn-danger mx-auto' data-bs-toggle='modal' data-bs-target='#destroyEjemplar$ejemplar->id'>
                         BORRAR EJEMPLAR
-                    </button>
-                </div>
+                        </button>";
+                    }
+                    
+                    
+                echo "</div>
             </div>";
             }
             echo "</div'>";
