@@ -67,6 +67,8 @@ DB_PASSWORD= yourPassw
 
 You need to configure the database with the tables and columns needed in this project:
 
+run the SQL script biblioteca.sql in the project root to get dummy data.
+
 That´s all.
 
 ## Contributing
