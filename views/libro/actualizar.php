@@ -3,8 +3,13 @@ Basic::getHead('TODOS LOS LIBROS');
 Basic::getHeader();
 ?>
 <h2 class="mx-auto">Actualizar el libro <?= $libro->id ?></h2>
+
+<?php
+include ('../views/components/toast.php');
+?>
+
 <div class="container m-5">
-<form class="row g-3" method="post" action="/libro/update/<?= $libro->id ?>">
+<form class="row g-3" method="post" action="/libro/update/<?= $libro->id ?>" onsubmit="alertToast();">
   <div class="col-md-6">
     <label for="titulo" class="form-label">TÍTULO</label>
     <input type="text" class="form-control" id="titulo" name="titulo" placeholder="<?= $libro->titulo ?>" />

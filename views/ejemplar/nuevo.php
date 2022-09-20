@@ -5,7 +5,7 @@ Basic::getHeader();
 
 
 
-<form action="/ejemplar/store" method="post">
+<form action="/ejemplar/store" method="post" onsubmit="alertToast();">
     <input type="hidden" class="form-control" name="idlibro" value='<?php echo "$libro->id"; ?>' >
 
     <div class="input-group mb-3">

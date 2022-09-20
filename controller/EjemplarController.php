@@ -62,6 +62,7 @@ public function store(){
         throw new Exception("No se pudo guardar $ejemplar->id");
 
     $mensaje="Guardado del Ejemplar $ejemplar->id correcto.";
+    $GLOBALS['mensaje'] = "El ejemplar $ejemplar->id se ha guardado de forma correcta.";
     include '../views/exito.php'; //mostrar éxito
 }
 
@@ -170,6 +171,7 @@ public function destroy(){
     // si es el administrador el que da de baja un Ejemplar cualquiera, se muestra éxito
     }else{
         $mensaje = "El Ejemplar ha sido dado de baja correctamente.";
+        $GLOBALS['mensaje'] = "El ejemplar con ID: $id se ha guardado de forma correcta.";
         include '../views/exito.php'; //mostrar éxito
     }
 }

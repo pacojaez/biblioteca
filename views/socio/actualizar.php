@@ -3,8 +3,11 @@ Basic::getHead('TODOS LOS SOCIOS');
 Basic::getHeader();
 ?>
 <h2 class="mx-auto">Actualizar el SOCIO <?= $socio->id ?></h2>
+<?php
+include ('../views/components/toast.php');
+?>
 <div class="container m-5">
-<form class="row g-3" method="post" action="/socio/update/<?= $socio->id ?>">
+<form class="row g-3" method="post" action="/socio/update/<?= $socio->id ?>" onsubmit="alertToast();"> 
   <div class="col-md-6">
     <label for="dni" class="form-label">DNI</label>
     <input type="text" class="form-control" id="dni" name="dni" placeholder="<?= $socio->dni ?>" />

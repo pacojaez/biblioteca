@@ -3,6 +3,10 @@ Basic::getHead('TODOS LOS USUARIOS');
 Basic::getHeader();
 ?>
 
+<?php 
+include ('../views/components/toast.php');
+?>
+
 <div class="container-fluid">
     <div class="card mx-auto" style="width: 36rem;">
         <div class="card-body">
@@ -31,7 +35,7 @@ Basic::getHeader();
                         </div>
                         <div class="modal-body">
                         <h4 class="modal-subtitle" id="borrarSocioLabel">Esta acción es irreversible. ¿Estás Seguro? </h4>
-                                <form action='/usuario/destroy/<?=$usuario->id ?>' method='post'>
+                                <form action='/usuario/destroy/<?=$usuario->id ?>' method='post' onsubmit="alertToast();">
                                     <input type='hidden' class='form-control' name='id' value="<?= $usuario->id ?>">
                                     <button type="submit" class="btn btn-danger" name="eliminar" value="eliminar">BORRADO DEFINITIVO DEL USUARIO</button>
                                 </form>

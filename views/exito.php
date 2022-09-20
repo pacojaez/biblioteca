@@ -5,6 +5,9 @@ Basic::getHeader();
 		<h1>Éxito</h1>
 		
 		<h2>Éxito en la operación solicitada</h2>
+		<?php
+		include ('../views/components/toast.php');
+		?>
 
 		<p class='exito'><?=$mensaje?></p>
 		<img src="/assets/img/Exito.png" width="50%" alt="exito en la operación">

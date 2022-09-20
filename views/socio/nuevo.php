@@ -4,7 +4,7 @@ Basic::getHeader();
 ?>
 <h2 class="mx-auto">Nuevo usuario</h2>
 <div class="container m-5">
-<form class="row g-3" method="post" action="/socio/store">
+<form class="row g-3" method="post" action="/socio/store" onsubmit="alertToast();">
   <div class="col-md-6">
     <label for="dni" class="form-label">DNI</label>
     <input type="text" class="form-control" id="dni" name="dni" required>

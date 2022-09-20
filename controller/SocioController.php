@@ -74,6 +74,7 @@ class SocioController {
             throw new Exception("No se pudo guardar $socio->socio");
 
         $mensaje="Guardado del socio $socio->id correcto.";
+        $GLOBALS['mensaje'] = "Guardado correctamente el socio $socio->socio con id: $socio->id.";
         include '../views/exito.php'; //mostrar éxito
     }
 
@@ -169,6 +170,7 @@ class SocioController {
 
     // si es el administrador el que da de baja un Ejemplar cualquiera, se muestra éxito
     }else{
+        $GLOBALS['mensaje'] = "El socio con id $id ha sido dado de baja correctamente.";
         $mensaje = "El socio ha sido dado de baja correctamente.";
         include '../views/exito.php'; //mostrar éxito
     }

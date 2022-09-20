@@ -4,7 +4,7 @@ Basic::getHeader();
 ?>
 <h2 class="mx-auto">Nuevo usuario</h2>
 <div class="container m-5">
-<form class="row g-3" method="post" action="/usuario/store">
+<form class="row g-3" method="post" action="/usuario/store" onsubmit="alertToast();">
 <div class="col-md-6">
     <label for="usuario" class="form-label">Nick Name</label>
     <input type="text" class="form-control" id="usuario" name="usuario">

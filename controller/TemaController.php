@@ -31,6 +31,7 @@ public function store(){
         throw new Exception("No se pudo guardar $tema->tema");
 
     $mensaje="Guardado del tema $tema->tema correcto.";
+    $GLOBALS['mensaje'] = "Creado el Tema $tema->tema correctamente.";
     include '../views/exito.php'; //mostrar éxito
 }
 

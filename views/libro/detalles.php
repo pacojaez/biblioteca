@@ -2,11 +2,10 @@
 Basic::getHead('TODOS LOS LIBROS');
 Basic::getHeader();
 ?>
+<?php
+	include ('../views/components/toast.php');
+?>
 
-<?php if( isset($GLOBALS['mensaje']) ){ 
-        echo "<div class='card mx-auto bg-success text-white' style='width: 36rem;'>";
-            echo $GLOBALS['mensaje'];
-        echo "</div>"; }?>
 
 <div class="container-fluid m-5"> 
     <div class="card mx-auto" style="width: 36rem;">
@@ -50,7 +49,7 @@ Basic::getHeader();
                     </div>
                     <div class="modal-body">
                         <h4 class="modal-subtitle" id="borrarLibroLabel">Esta acción es irreversible. ¿Estás Seguro? </h4>
-                                <form action='/libro/destroy/<?=$libro->id ?>' method='post'>
+                                <form action='/libro/destroy/<?=$libro->id ?>' method='post' onsubmit="alertToast();">
                                     <input type='hidden' class='form-control' name='idlibro' value="<?= $libro->id ?>">
                                     <button type="submit" class="btn btn-danger" name="eliminar" value="eliminar">BORRADO DEFINITIVO DEL LIBRO</button>
                                 </form>
@@ -69,7 +68,7 @@ Basic::getHeader();
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="/ejemplar/store" method="post">
+                        <form action="/ejemplar/store" method="post" onsubmit="alertToast();">
                             <input type="hidden" class="form-control" name="idlibro" value='<?php echo "$libro->id"; ?>'>
 
                             <div class="input-group mb-3">
@@ -84,12 +83,12 @@ Basic::getHeader();
                                 <span class="input-group-text" id="inputGroup-sizing-default">PRECIO</span>
                                 <input type="number" class="form-control" name="precio">
                             </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-primary" name="guardar" value="guardar">Guardar</button>
-                    </div>
-                    </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="submit" class="btn btn-primary" name="guardar" value="guardar">Guardar</button>
+                            </div>
+                        </form>
                 </div>
             </div>
         </div>
@@ -120,7 +119,7 @@ Basic::getHeader();
                             </div>
                             <div class='modal-body'>
                             <h5 class='modal-title' id='destroyEjemplarLabel$ejemplar->id'>Esta acción es irreversible, ¿estás seguro? </h5>
-                            <form action='/ejemplar/destroy/$ejemplar->id' method='post'>
+                            <form action='/ejemplar/destroy/$ejemplar->id' method='post' onsubmit='alertToast();'>
                                 <input type='hidden' class='form-control' name='id' value='$ejemplar->id' >
                             </div>
                             <div class='modal-footer'>
@@ -168,7 +167,7 @@ Basic::getHeader();
                     </div>
                     <div class="modal-body">
                         <h4 class="modal-subtitle" id="borrarLibroLabel">Aquí puedes añadir un Tema al libro </h4>
-                                <form action='/libro/addTema/<?=$libro->id ?>' method='post'>
+                                <form action='/libro/addTema/<?=$libro->id ?>' method='post' onsubmit="alertToast();">
                                     <input type='hidden' class='form-control' name='idlibro' value="<?= $libro->id ?>">
                                     <select class="form-select" aria-label="Default select example" name="idtema">
                                         <?php foreach($allTemas as $temaSelect){

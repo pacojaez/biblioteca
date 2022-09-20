@@ -24,7 +24,7 @@ Basic::getHeader();
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action='/prestamo/crear' method='post'>
+                            <form action='/prestamo/crear' method='post' onsubmit="alertToast();">
                                 <input type='hidden' class='form-control' name='idsocio' value="<?= $socio->id ?>">
                                 <label for="limite" class="form-label">Fecha límite devolución</label>
                                 <input type='date' class='form-control' name='limite'>
@@ -59,7 +59,7 @@ Basic::getHeader();
                         </div>
                         <div class="modal-body">
                         <h4 class="modal-subtitle" id="borrarSocioLabel">Esta acción es irreversible. ¿Estás Seguro? </h4>
-                                <form action='/socio/destroy/<?=$socio->id ?>' method='post'>
+                                <form action='/socio/destroy/<?=$socio->id ?>' method='post' onsubmit="alertToast();">
                                     <input type='hidden' class='form-control' name='idsocio' value="<?= $socio->id ?>">
                                     <button type="submit" class="btn btn-danger" name="eliminar" value="eliminar">BORRADO DEFINITIVO DEL SOCIO</button>
                                 </form>
@@ -98,7 +98,7 @@ Basic::getHeader();
                             <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                             </div>
                             <div class='modal-body'>
-                            <form action='/prestamo/actualizarPrestamo/$prestamo->id' method='post'>
+                            <form action='/prestamo/actualizarPrestamo/$prestamo->id' method='post' onsubmit='alertToast();'>
                                 <input type='hidden' class='form-control' name='id' value='$prestamo->id' >
                             </div>
                             <div class='modal-footer'>
@@ -154,7 +154,7 @@ Basic::getHeader();
                             </div>
                             <div class='modal-body'>
                             <h5 class='modal-title' id='destroyEjemplarLabel$prestamo->id'>Esta acción es irreversible, ¿estás seguro? </h5>
-                            <form action='/prestamo/destroy/$prestamo->id' method='post'>
+                            <form action='/prestamo/destroy/$prestamo->id' method='post' onsubmit='alertToast();'>
                                 <input type='hidden' class='form-control' name='id' value='$prestamo->id' >
                             </div>
                             <div class='modal-footer'>

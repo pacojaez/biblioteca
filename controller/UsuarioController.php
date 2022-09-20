@@ -71,6 +71,7 @@ class UsuarioController{
             throw new Exception("No se pudo guardar $usuario->usuario");
 
         $mensaje="Guardado del usuario $usuario->usuario correcto.";
+        $GLOBALS['mensaje'] = "Guardado del usuario $usuario->usuario correcto.";
         include '../views/exito.php'; //mostrar éxito
     }
 
@@ -103,35 +104,68 @@ class UsuarioController{
             throw new Exception('No tienes los permisos necesarios');
 
         // comprueba que llegue el formulario con los datos
-        if(empty($_POST['actualizar']))
-            throw new Exception('No se recibieron datos');
+        // if(empty($_POST['actualizar']))
+        //     throw new Exception('No se recibieron datos');
 
-        $id = intval($_POST['id']); // recuperar el id vía POST
+        // $id = intval($_POST['id']); // recuperar el id vía POST
 
-        // recuperar el usuario
-        if(!$usuario = Usuario::getById($id))
-            throw new Exception("No existe el usuario $id.");
+        // // recuperar el usuario
+        // if(!$usuario = Usuario::getById($id))
+        //     throw new Exception("No existe el usuario $id.");
 
-        $usuario->usuario = DB::escape($_POST['usuario']);
-        $usuario->nombre = DB::escape($_POST['nombre']);
-        $usuario->apellidos = DB::escape($_POST['apellidos']);
-        $usuario->privilegio = empty($_POST['privilegio'])? 0 : intval($_POST['privilegio']);
-        $usuario->administrador = empty($_POST['administrador'])? 0 : 1;
-        $usuario->email = DB::escape($_POST['email']);
+        // $usuario->usuario = DB::escape($_POST['usuario']);
+        // $usuario->nombre = DB::escape($_POST['nombre']);
+        // $usuario->apellidos = DB::escape($_POST['apellidos']);
+        // $usuario->privilegio = empty($_POST['privilegio'])? 0 : intval($_POST['privilegio']);
+        // $usuario->administrador = empty($_POST['administrador'])? 0 : 1;
+        // $usuario->email = DB::escape($_POST['email']);
 
-        //la clave solamente cambia si se indica una nueva
-        if(!empty($_POST['clave']))
-            $usuario->clave = md5($_POST['clave']);
+        // //la clave solamente cambia si se indica una nueva
+        // if(!empty($_POST['clave']))
+        //     $usuario->clave = md5($_POST['clave']);
+
+        /**
+         * método para extraer los parámetros por GET con un prefijo
+         */
+        extract($_POST, EXTR_PREFIX_ALL, "p");
+       
+        // isset($p_funcion) ? $p_funcion : 'No existe parametro por POST';
+
+        if(empty($p_actualizar))
+                    throw new Exception('No se recibieron datos');
+            
+            if(!$usuario = Usuario::getById($id))
+                throw new Exception("No existe el usuario $id.");
+
+            unset($_POST['actualizar']);
+
+            $datosActualizar = array_filter($_POST);
+
+                foreach ( $datosActualizar as $key=>$valor){
+                    $usuario->$key = $valor;            
+                }
 
         // intenta realizar la actualización de datos
-        if($usuario->actualizar()===false)
-            throw new Exception("No se pudo actualizar $usuario->usuario");
+        // if($usuario->actualizar()===false)
+        //     throw new Exception("No se pudo actualizar $usuario->usuario");
 
-        // prepara un mensaje
-        $GLOBALS['mensaje'] = "Actualización del usuario $usuario->usuario correcta.";
+        // // prepara un mensaje
+        // $GLOBALS['mensaje'] = "Actualización del usuario $usuario->usuario correcta.";
 
-        // repite la operación edit, así mantiene la vista de edición.
-        $this->edit($usuario->id);
+        // // repite la operación edit, así mantiene la vista de edición.
+        // $this->edit($usuario->id);
+
+        try{
+            $usuario->actualizar();
+                // prepara un mensaje
+            $GLOBALS['mensaje'] = "Actualizado correctamente el usuario $usuario->usuario con id: $usuario->id.";
+            
+        }catch(Throwable $e){
+            $GLOBALS['mensaje'] = "No se pudo actualizar el usuario: $usuario->usuario";  
+            
+        }finally{
+            $this->edit($id);
+        }
     }
 
 
@@ -168,7 +202,7 @@ class UsuarioController{
         if(!Usuario::borrar($id))
             throw new Exception("No se pudo dar de baja el usuario $id");
 
-
+            $GLOBALS['mensaje'] = "No se pudo dar de baja el usuario con id $id.";
 
         // hace logout (solamente si es el mismo usuario el que se está dando de baja)
         // y no cuando es el administrador el que da de baja un usuario cualquiera
@@ -178,6 +212,7 @@ class UsuarioController{
         // si es el administrador el que da de baja un usuario cualquiera, se muestra éxito
         }else{
             $mensaje = "El usuario ha sido dado de baja correctamente.";
+            $GLOBALS['mensaje'] = "Borrado del usuario con id $id.";
             include '../views/exito.php'; //mostrar éxito
         }
     }

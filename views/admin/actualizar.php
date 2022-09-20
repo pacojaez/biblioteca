@@ -2,9 +2,15 @@
 Basic::getHead('TODOS LOS LIBROS');
 Basic::getHeader();
 ?>
+
 <h2 class="mx-auto">Actualizar el usuario <?= $usuario->id ?></h2>
+
+<?php
+include ('../views/components/toast.php');
+?>
+
 <div class="container m-5">
-<form class="row g-3" method="post" action="/usuario/update/<?= $usuario->id ?>" >
+<form class="row g-3" method="post" action="/usuario/update/<?= $usuario->id ?>" onsubmit="alertToast();">
 <input type="hidden" name="id" value="<?= $usuario->id ?>" />
 <div class="col-md-6">
     <label for="usuario" class="form-label">NickName</label>
@@ -41,7 +47,7 @@ Basic::getHeader();
     <button type="submit" class="btn btn-primary" name="actualizar" value="actualizar">ACTUALIZAR</button>
   </div>
 </form>
-<form action='/usuario/destroy/<?=$usuario->id ?>' method='post'>
+<form action='/usuario/destroy/<?=$usuario->id ?>' method='post' onsubmit="alertToast();">
     <input type='hidden' class='form-control' name='id' value="<?= $usuario->id ?>">
     <button type="submit" class="btn btn-danger" name="eliminar" value="eliminar">BORRADO DEFINITIVO DEL USUARIO</button>
   </form>

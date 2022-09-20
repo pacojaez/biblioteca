@@ -89,6 +89,7 @@ public function store(){
         throw new Exception("No se pudo guardar $libro->titulo");
 
     $mensaje="Guardado del libro $libro->titulo correcto.";
+    $GLOBALS['mensaje'] = "El libro $libro->titulo se ha guardado de forma correcta.";
     include '../views/exito.php'; //mostrar éxito
 }
 
@@ -197,7 +198,6 @@ public function addTema( int $idlibro  ){
         $this->show($idlibro);
     }
 
-    
 
 }
 
@@ -243,6 +243,7 @@ public function destroy(){
 
     // si es el administrador el que da de baja un libro cualquiera, se muestra éxito
     }else{
+        $GLOBALS['mensaje'] = "El libro libro con id $id se ha borrado del sistema.";
         $mensaje = "El libro ha sido dado de baja correctamente.";
         include '../views/exito.php'; //mostrar éxito
     }
