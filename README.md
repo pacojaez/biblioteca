@@ -67,7 +67,16 @@ DB_PASSWORD= yourPassw
 
 You need to configure the database with the tables and columns needed in this project:
 
-run the SQL script ```biblioteca.sql``` in the project root to get dummy data.
+Run the SQL script ```biblioteca.sql``` in the project root to get dummy data.
+
+Then you´ve two user:
+
+USER: bibliotecario
+PASSWORD: 1234
+
+USER: Administrador
+PASSWORD: 1234
+
 
 That´s all.
 
